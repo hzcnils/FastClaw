@@ -1,0 +1,43 @@
+{
+  "name": "chat-renderer",
+  "version": "0.6.2",
+  "license": "Apache-2.0",
+  "description": "Reusable Vue 3 chat messages, conversation layout, context bar, and composer",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "module": "./dist/chat-renderer.js",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/chat-renderer.js"
+    },
+    "./style.css": "./dist/chat-renderer.css"
+  },
+  "sideEffects": [
+    "**/*.css",
+    "**/markdownExtensions.*"
+  ],
+  "scripts": {
+    "build": "vite build && node scripts/verify-dist.mjs && vue-tsc -p tsconfig.json",
+    "test": "vitest run",
+    "demo": "vite --config vite.demo.config.ts",
+    "demo:build": "vite build --config vite.demo.config.ts"
+  },
+  "peerDependencies": {
+    "vue": "^3.5.3"
+  },
+  "dependencies": {
+    "dompurify": "^3.4.13",
+    "highlight.js": "^11.10.0",
+    "katex": "^0.16.25",
+    "md-editor-v3": "^6.5.0",
+    "mermaid": "^11.0.0"
+  },
+  "devDependencies": {
+    "@vue/test-utils": "^2.4.6",
+    "jsdom": "^25.0.1"
+  }
+}

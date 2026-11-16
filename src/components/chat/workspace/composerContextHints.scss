@@ -1,0 +1,105 @@
+.quote-ref-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 4px 0 8px;
+  padding: 7px 8px 7px 12px;
+  background: var(--bg-secondary, #f5f7fa);
+  border: 1px solid var(--border-color);
+  border-left: 3px solid var(--color-primary);
+  border-radius: 8px;
+}
+
+.quote-ref-text {
+  flex: 1;
+  min-width: 0;
+  font-size: 13px;
+  line-height: 20px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.quote-ref-close {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+
+  &:hover {
+    background: var(--bg-hover, rgba(0, 0, 0, 0.06));
+    color: var(--text-primary);
+  }
+}
+
+.selected-skill-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  margin: 0 0 8px 0;
+  background: var(--bg-hover, #f3f4f6);
+  border: 1px solid var(--border-color, #e5e7eb);
+  border-radius: 8px;
+  font-size: 12px;
+}
+
+.chip-badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 999px;
+  text-transform: uppercase;
+}
+
+.chip-badge.skill {
+  background: #ede9fe;
+  color: #7c3aed;
+}
+
+.chip-badge.mcp {
+  background: #cffafe;
+  color: #0891b2;
+}
+
+.chip-badge.builtin {
+  background: #f3f4f6;
+  color: #6b7280;
+}
+
+.chip-name {
+  font-weight: 600;
+  color: var(--text-primary, #1f2937);
+  font-family: 'SF Mono', 'Fira Code', monospace;
+}
+
+.chip-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary, #9ca3af);
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 50%;
+  padding: 0;
+  line-height: 1;
+}
+
+.chip-close:hover {
+  background: rgba(0, 0, 0, 0.08);
+  color: var(--text-primary, #374151);
+}

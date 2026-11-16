@@ -1,0 +1,6 @@
+.model-cards { flex:1; min-height:0; overflow-y:auto; overflow-x:hidden; display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:16px; align-content:start; padding:8px 6px 8px 6px; box-sizing:border-box; }
+.model-cards::-webkit-scrollbar { width:5px; }
+.model-cards::-webkit-scrollbar-thumb { background:var(--border-color); border-radius:3px; }
+.model-cards :deep(.model-card) { height:100px; }
+.empty-model { grid-column:1/-1; padding:40px; text-align:center; color:var(--text-secondary); background:var(--bg-hover); border-radius:12px; border:1px dashed var(--border-color); }
+.empty-model svg { margin-bottom:12px; opacity:.5; }

@@ -1,0 +1,60 @@
+[server]
+host = "127.0.0.1"
+port = 23180
+ws_path = "/ws"
+cors_enabled = false
+
+[llm]
+default_provider = "openai"
+default_model = "qwen-max"
+
+[llm.providers.openai]
+api_key_env = "OPENAI_API_KEY"
+api_base = "https://api.openai.com/v1"
+default_model = "qwen-max"
+max_tokens = 4096
+
+[llm.providers.claude]
+api_key_env = "ANTHROPIC_API_KEY"
+api_base = "https://api.anthropic.com/v1"
+default_model = "claude-sonnet-4-20250514"
+max_tokens = 4096
+
+[llm.providers.local]
+api_key_env = "LOCAL_API_KEY"
+api_base = "http://localhost:3010/v1"
+default_model = "Qwen3.5-397B-A17B"
+max_tokens = 8192
+
+[memory]
+enabled = false
+vector_store = "qdrant"
+vector_endpoint = "http://127.0.0.1:6333"
+embedding_model = "bge-large-zh-v1.5"
+embedding_dimension = 1024
+
+[sandbox]
+default_type = "docker"
+timeout_seconds = 300
+memory_limit_mb = 512
+
+[storage]
+db_type = "sqlite"
+sqlite_path = "fastplan.db"
+pool_size = 10
+min_connections = 1
+connect_timeout_seconds = 30
+
+[nlu]
+enabled = false
+
+[plan_cache]
+enabled = false
+max_entries = 1000
+
+[schema_registry]
+enabled = false
+
+[pinchtab]
+server_url = "http://127.0.0.1:9867"
+token = ""

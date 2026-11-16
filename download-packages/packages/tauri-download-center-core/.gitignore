@@ -1,0 +1,6 @@
+# Rust 编译产物
+target/
+
+# 前端依赖
+node_modules
+dist

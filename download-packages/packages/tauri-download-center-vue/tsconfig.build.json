@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "outDir": "types",
+    "rootDir": "src",
+    "paths": {
+      "tauri-download-center-core": ["../tauri-download-center-core/types/index.d.ts"]
+    }
+  },
+  "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx"]
+}

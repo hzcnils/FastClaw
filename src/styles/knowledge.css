@@ -1,0 +1,525 @@
+@reference "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+/* ===== 基础样式重置 ===== */
+@layer base {
+  * {
+    @apply border-slate-200 dark:border-white/10;
+  }
+  
+  html {
+    @apply scroll-smooth;
+  }
+  
+  body {
+    @apply bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-300 antialiased font-sans;
+    font-feature-settings: 'kern', 'liga', 'calt';
+  }
+
+  /* 自定义滚动条 */
+  ::-webkit-scrollbar {
+    @apply w-1.5 h-1.5;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-slate-300/80 dark:bg-slate-700/50 rounded-full transition-colors hover:bg-slate-400 dark:hover:bg-slate-600;
+  }
+
+  /* 选择文本样式 */
+  ::selection {
+    @apply bg-blue-500/30 text-white;
+  }
+}
+
+/* ===== 通用组件样式 ===== */
+@layer components {
+  /* 卡片样式 */
+  .card {
+    @apply bg-white dark:bg-slate-900/60 backdrop-blur-xl rounded-2xl border border-slate-200 dark:border-white/5 p-6
+           shadow-sm dark:shadow-xl dark:shadow-black/20 transition-all duration-300;
+  }
+  
+  .card-hover {
+    @apply hover:border-blue-500/20 hover:shadow-lg dark:hover:shadow-2xl dark:hover:shadow-blue-500/5 hover:bg-white dark:hover:bg-slate-900/80;
+  }
+  
+  .card-compact {
+    @apply p-4;
+  }
+
+  /* 按钮样式 */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg 
+           font-medium text-sm transition-all duration-200 
+           focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-50 dark:focus:ring-offset-slate-950
+           disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none;
+  }
+
+  .btn-primary {
+    @apply bg-blue-600 text-white text-sm shadow-lg shadow-blue-500/25 border border-blue-500/50
+           hover:bg-blue-500 hover:shadow-blue-500/40 hover:border-blue-400
+           focus:ring-blue-500 ;
+  }
+
+  .btn-secondary {
+    @apply bg-white text-slate-700 text-sm border border-slate-200 shadow-sm
+           hover:bg-slate-50 hover:text-slate-900 hover:border-slate-300
+           dark:bg-white/5 dark:text-slate-300 dark:border-white/10
+           dark:hover:bg-white/10 dark:hover:text-white dark:hover:border-white/20;
+  }
+
+  .btn-ghost {
+    @apply bg-transparent text-slate-600 
+           hover:bg-slate-100 hover:text-slate-900
+           dark:text-slate-400 
+           dark:hover:bg-white/5 dark:hover:text-white
+           focus:ring-slate-500;
+  }
+
+  .btn-danger {
+    @apply bg-red-50 text-red-600 border border-red-200
+           hover:bg-red-100 hover:text-red-700 hover:border-red-300
+           dark:bg-red-500/10 dark:text-red-400 dark:border-red-500/20
+           dark:hover:bg-red-500/20 dark:hover:text-red-300 dark:hover:border-red-500/30
+           focus:ring-red-500 shadow-lg shadow-red-500/10;
+  }
+
+  .btn-success {
+    @apply bg-emerald-50 text-emerald-600 border border-emerald-200
+           hover:bg-emerald-100 hover:text-emerald-700 hover:border-emerald-300
+           dark:bg-emerald-500/10 dark:text-emerald-400 dark:border-emerald-500/20
+           dark:hover:bg-emerald-500/20 dark:hover:text-emerald-300 dark:hover:border-emerald-500/30
+           focus:ring-emerald-500 shadow-lg shadow-emerald-500/10;
+  }
+
+  .btn-sm {
+    @apply px-3 py-1.5 text-xs;
+  }
+
+  .btn-lg {
+    @apply px-6 py-3 text-base;
+  }
+
+  .btn-icon {
+    @apply p-2 aspect-square;
+  }
+
+  /* 输入框样式 */
+  .input {
+    @apply w-full px-4 py-2.5 rounded-lg text-base
+            dark:bg-slate-900/50 border border-[var(--border-color)]  dark:border-[var(--border-color)]  
+            dark:text-slate-200
+           placeholder:text-slate-400 dark:placeholder:text-slate-500
+           focus:outline-none focus:outline-none focus:ring-0 focus:outline-none;
+  }
+
+  .input-error {
+    @apply border-red-500/50 focus:border-red-500 placeholder:text-red-400/50;
+  }
+
+  /* 选择框样式 */
+  .select {
+    @apply w-full px-4 py-2.5 rounded-lg text-sm appearance-none cursor-pointer pr-10
+           dark:bg-slate-900/50 border border-[var(--border-color)] dark:border-[var(--border-color)]
+           text-slate-900 dark:text-slate-200
+           placeholder:text-slate-400 dark:placeholder:text-slate-500
+           focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:bg-white dark:focus:bg-slate-900
+           transition-all duration-200
+           disabled:opacity-50 disabled:cursor-not-allowed;
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20fill%3D%22none%22%20viewBox%3D%220%200%2024%2024%22%20stroke%3D%22%2394a3b8%22%3E%3Cpath%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%222%22%20d%3D%22M19%209l-7%207-7-7%22%2F%3E%3C%2Fsvg%3E');
+    background-size: 1rem;
+    background-position: right 0.75rem center;
+    background-repeat: no-repeat;
+  }
+  .selects {
+    @apply w-full px-4 py-2.5 rounded-lg text-sm appearance-none cursor-pointer 
+           dark:bg-slate-900/50 border border-[var(--border-color)] 
+           focus:outline-none;
+  }
+
+  /* 标签样式（对齐 FastKG 文件状态徽章） */
+  .badge {
+    @apply inline-flex items-center gap-1 px-2 h-5 rounded-full text-[11px] font-medium border;
+    line-height: 1;
+  }
+
+  .badge-primary {
+    @apply bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-500/10 dark:text-blue-400 dark:border-blue-500/20;
+  }
+
+  .badge-success {
+    @apply bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-500/10 dark:text-emerald-400 dark:border-emerald-500/20;
+  }
+
+  .badge-warning {
+    @apply bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-500/10 dark:text-amber-400 dark:border-amber-500/20;
+  }
+
+  .badge-danger {
+    @apply bg-red-50 text-red-700 border-red-200 dark:bg-red-500/10 dark:text-red-400 dark:border-red-500/20;
+  }
+
+  .badge-gray {
+    @apply bg-slate-100 text-slate-600 border-slate-200 dark:bg-slate-700/30 dark:text-slate-400 dark:border-slate-600/30;
+  }
+
+  .badge-secondary {
+    background: transparent;
+    color: var(--text-secondary, #64748b);
+    border-color: var(--border-color);
+  }
+
+  .badge-info {
+    background: transparent;
+    color: var(--text-secondary, #64748b);
+    border-color: var(--border-color);
+  }
+
+  /* 表格样式 */
+  .table-container {
+    @apply overflow-x-auto rounded-xl border border-slate-200 dark:border-white/5 bg-white dark:bg-slate-900/30;
+  }
+
+  .table {
+    @apply w-full text-sm text-left border-collapse;
+  }
+
+  .table thead {
+    @apply bg-slate-50 dark:bg-white/5 text-slate-500 dark:text-slate-400 text-xs uppercase tracking-wider font-medium;
+  }
+
+  .table th {
+    @apply px-4 py-3 font-semibold border-b border-slate-200 dark:border-white/5;
+  }
+
+  .table td {
+    @apply px-4 py-3 border-b border-slate-200 dark:border-white/5 text-slate-700 dark:text-slate-300;
+  }
+
+  .table tbody tr {
+    @apply transition-colors  hover:bg-[var(--dropdown-hover-color)];
+  }
+  
+  .table tbody tr:last-child td {
+    @apply border-b-0;
+  }
+
+  /* 模态框 */
+  .modal-overlay {
+    @apply fixed inset-0 z-50 flex items-center justify-center p-4
+           bg-slate-900/40 dark:bg-slate-950/80 backdrop-blur-sm;
+    animation: fadeIn 0.2s ease-out forwards;
+  }
+
+  .modal-content {
+    @apply  dark:bg-slate-900 rounded-2xl  dark:border-white/10 shadow-xl dark:shadow-2xl dark:shadow-black/50
+           max-h-[90vh] overflow-hidden flex flex-col;
+    animation: scaleIn 0.2s ease-out forwards;
+  }
+
+  .modal-header {
+    @apply flex items-center justify-between p-5 border-b border-[var(--border-color)] dark:border-[var(--border-color)] dark:bg-slate-900;
+  }
+
+  .modal-body {
+    @apply  overflow-y-auto  dark:bg-slate-900;
+       padding: 15px 20px 20px 20px;
+    /* 顺序：上、右、下、左 */
+  }
+
+  .modal-footer {
+    @apply flex items-center justify-end gap-3 p-5 border-t border-[var(--border-color)] dark:border-[var(--border-color)]  dark:bg-slate-900;
+  }
+
+  /* Tabs 标签页 */
+  .tabs {
+    @apply flex gap-1 p-1 bg-slate-100 dark:bg-black/20 rounded-lg border border-slate-200 dark:border-white/5;
+  }
+
+  .tab {
+    @apply px-4 py-2 rounded-md text-sm font-medium text-slate-600 dark:text-slate-400
+           transition-all duration-200 cursor-pointer
+           hover:text-slate-900 dark:hover:text-slate-200 hover:bg-white dark:hover:bg-white/5;
+  }
+
+  .tab-active {
+    @apply bg-blue-600 text-white shadow-lg shadow-blue-500/20;
+  }
+
+  /* 进度条 */
+  .progress {
+    @apply w-full h-1.5 bg-slate-200 dark:bg-slate-700/30 rounded-full overflow-hidden;
+  }
+
+  .progress-bar {
+    @apply h-full bg-gradient-to-r from-blue-600 to-blue-400 rounded-full
+           transition-all duration-500 ease-out shadow-[0_0_10px_rgba(59,130,246,0.5)];
+  }
+
+  /* 加载动画 */
+  .loading-spinner {
+    @apply w-5 h-5 border-2 border-blue-500/30 border-t-blue-500 
+           rounded-full animate-spin;
+  }
+
+  .loading-dots {
+    @apply flex gap-1;
+  }
+  
+  .loading-dot {
+    @apply w-1.5 h-1.5 bg-blue-500 rounded-full animate-bounce;
+  }
+
+  /* 统计卡片 */
+  .stat-card {
+    @apply bg-white dark:bg-slate-900/60 backdrop-blur-xl rounded-2xl border border-slate-200 dark:border-white/5 p-6
+           shadow-sm dark:shadow-xl dark:shadow-black/20 transition-all duration-300
+           relative overflow-hidden;
+  }
+
+  .stat-card:hover {
+    @apply border-blue-500/20;
+  }
+
+  .stat-card::before {
+    @apply content-[''] absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 transition-opacity duration-500;
+  }
+
+  .stat-card:hover::before {
+    @apply opacity-100;
+  }
+
+  .stat-card-icon {
+    @apply w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-transform duration-300;
+  }
+
+  .stat-card:hover .stat-card-icon {
+    @apply scale-110 rotate-3;
+  }
+
+  .stat-card-value {
+    @apply text-2xl font-bold text-slate-900 dark:text-white tracking-tight;
+  }
+
+  .stat-card-label {
+    @apply text-sm text-slate-600 dark:text-slate-400 mt-1;
+  }
+}
+
+/* ===== 动画 ===== */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.2s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.2s ease-out forwards;
+}
+
+/* 情景主题（除雾灰调）下样式覆盖 */
+html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .overflow-x-auto thead {
+  background: rgba(0, 0, 0, 0.05) !important;
+}
+html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .bg-white.dark\:bg-slate-800\/50 {
+  background: transparent !important;
+}
+html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .el-select .el-input__wrapper {
+  background: transparent !important;
+}
+
+html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .overflow-x-auto,
+html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .overflow-hidden.rounded-lg.border {
+  border-color: var(--border-color) !important;
+}
+html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) tbody tr:hover {
+  background: rgba(255, 255, 255, 0.05) !important;
+}
+html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .space-y-4 {
+  border-color: var(--border-color) !important;
+}
+
+html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .overflow-x-auto table,
+html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .overflow-hidden table {
+  border-color: var(--border-color) !important;
+}
+html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .overflow-x-auto th,
+html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .overflow-x-auto td,
+html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .overflow-hidden th,
+html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .overflow-hidden td {
+  border-color: var(--border-color) !important;
+}
+html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .space-y-4 > * {
+  border-color: var(--border-color) !important;
+}
+
+
+html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .overflow-x-auto thead th,
+html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .overflow-hidden thead th {
+  background: rgba(0, 0, 0, 0.05) !important;
+}
+
+/* 暗色/情景主题下表头背景 */
+
+
+/* [data-theme-id="simple-dark"] .overflow-hidden thead th,
+[data-theme-id="simple-dark"] .overflow-x-auto thead th,
+[data-theme-id^="dark-"] .overflow-hidden thead th,
+[data-theme-id^="dark-"] .overflow-x-auto thead th,
+[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .overflow-hidden thead th,
+[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .overflow-x-auto thead th {
+  background: rgba(0, 0, 0, 0.05) !important;
+} */
+
+/* 暗色/情景主题下表格分割线 */
+[data-theme-id="simple-dark"] .overflow-hidden table,
+[data-theme-id="simple-dark"] .overflow-x-auto table,
+[data-theme-id^="dark-"] .overflow-hidden table,
+[data-theme-id^="dark-"] .overflow-x-auto table,
+[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .overflow-hidden table,
+[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .overflow-x-auto table {
+  border-color: var(--border-color) !important;
+}
+[data-theme-id="simple-dark"] .overflow-hidden th,
+[data-theme-id="simple-dark"] .overflow-hidden td,
+[data-theme-id="simple-dark"] .overflow-x-auto th,
+[data-theme-id="simple-dark"] .overflow-x-auto td,
+[data-theme-id^="dark-"] .overflow-hidden th,
+[data-theme-id^="dark-"] .overflow-hidden td,
+[data-theme-id^="dark-"] .overflow-x-auto th,
+[data-theme-id^="dark-"] .overflow-x-auto td,
+[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .overflow-hidden th,
+[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .overflow-hidden td,
+[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .overflow-x-auto th,
+[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .overflow-x-auto td {
+  border-color: var(--border-color) !important;
+}
+
+/* 暗色/情景主题下权限列 badge 背景透明 */
+[data-theme-id="simple-dark"] .dark\:bg-blue-500\/10,
+[data-theme-id="simple-dark"] .dark\:bg-amber-500\/10,
+[data-theme-id="simple-dark"] .dark\:bg-rose-500\/10,
+[data-theme-id^="dark-"] .dark\:bg-blue-500\/10,
+[data-theme-id^="dark-"] .dark\:bg-amber-500\/10,
+[data-theme-id^="dark-"] .dark\:bg-rose-500\/10,
+[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .dark\:bg-blue-500\/10,
+[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .dark\:bg-amber-500\/10,
+[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .dark\:bg-rose-500\/10 {
+  background: transparent !important;
+}
+
+/* 暗色/情景主题下权限列 badge 背景透明 */
+[data-theme-id="simple-dark"] .overflow-hidden td span[class*="rounded-full"],
+[data-theme-id="simple-dark"] .overflow-x-auto td span[class*="rounded-full"],
+[data-theme-id^="dark-"] .overflow-hidden td span[class*="rounded-full"],
+[data-theme-id^="dark-"] .overflow-x-auto td span[class*="rounded-full"],
+[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .overflow-hidden td span[class*="rounded-full"],
+[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .overflow-x-auto td span[class*="rounded-full"] {
+  background: transparent !important;
+}
+
+/* 暗色/情景主题下 overflow-hidden 表格分割线 */
+[data-theme-id="simple-dark"] .overflow-hidden table,
+[data-theme-id="simple-dark"] .overflow-hidden thead,
+[data-theme-id="simple-dark"] .overflow-hidden tbody,
+[data-theme-id="simple-dark"] .overflow-hidden th,
+[data-theme-id="simple-dark"] .overflow-hidden td,
+[data-theme-id="simple-dark"] .overflow-hidden tr,
+[data-theme-id^="dark-"] .overflow-hidden table,
+[data-theme-id^="dark-"] .overflow-hidden thead,
+[data-theme-id^="dark-"] .overflow-hidden tbody,
+[data-theme-id^="dark-"] .overflow-hidden th,
+[data-theme-id^="dark-"] .overflow-hidden td,
+[data-theme-id^="dark-"] .overflow-hidden tr,
+[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .overflow-hidden table,
+[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .overflow-hidden thead,
+[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .overflow-hidden tbody,
+[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .overflow-hidden th,
+[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .overflow-hidden td,
+[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .overflow-hidden tr {
+  border-color: var(--border-color) !important;
+}
+
+/* 暗色主题下 space-y-4 背景透明 */
+[data-theme-id="simple-dark"] .space-y-4,
+[data-theme-id="simple-dark"] .space-y-4 > *,
+[data-theme-id^="dark-"] .space-y-4,
+[data-theme-id^="dark-"] .space-y-4 > * {
+  background: transparent !important;
+}
+
+[data-theme-id="simple-dark"] .space-y-4,
+[data-theme-id="simple-dark"] .space-y-4 > *,
+[data-theme-id^="dark-"] .space-y-4,
+[data-theme-id^="dark-"] .space-y-4 > * {
+  border-color: var(--border-color) !important;
+}
+
+/* 暗色主题 overflow-hidden 表格行悬浮 */
+[data-theme-id="simple-dark"] .overflow-hidden tbody tr:hover td,
+[data-theme-id^="dark-"] .overflow-hidden tbody tr:hover td {
+  background: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* === 暗色主题通用覆盖（使用 .dark 类选择器） === */
+
+/* 表格边框和分割线 */
+.dark .overflow-hidden table,
+.dark .overflow-hidden thead,
+.dark .overflow-hidden tbody,
+.dark .overflow-hidden th,
+.dark .overflow-hidden td,
+.dark .overflow-hidden tr,
+.dark .overflow-x-auto table,
+.dark .overflow-x-auto thead,
+.dark .overflow-x-auto tbody,
+.dark .overflow-x-auto th,
+.dark .overflow-x-auto td,
+.dark .overflow-x-auto tr {
+  border-color: var(--border-color) !important;
+}
+
+/* 表头背景 */
+.dark .overflow-hidden thead,
+.dark .overflow-hidden thead th,
+.dark .overflow-x-auto thead,
+.dark .overflow-x-auto thead th {
+  background: rgba(0, 0, 0, 0.05) !important;
+}
+
+/* 行悬浮 */
+.dark .overflow-hidden tbody tr:hover td,
+.dark .overflow-x-auto tbody tr:hover td {
+  background: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* space-y-4 背景透明 + 边框 */
+.dark .space-y-4,
+.dark .space-y-4 > * {
+  background: transparent !important;
+  border-color: var(--border-color) !important;
+}
+
+/* 权限 badge 背景透明 */
+.dark .overflow-hidden td span[class*="rounded-full"],
+.dark .overflow-x-auto td span[class*="rounded-full"] {
+  background: transparent !important;
+}
+
+/* 情景主题（除雾灰）：分块原文 chunk-section 悬浮底 */
+html[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) body .chunk-viewer-root .chunk-section.cv-chunk-section:hover,
+html[data-theme-id="custom-scene"] body .chunk-viewer-root .chunk-section.cv-chunk-section:hover {
+  background: var(--dropdown-hover-color) !important;
+  background-color: var(--dropdown-hover-color) !important;
+}

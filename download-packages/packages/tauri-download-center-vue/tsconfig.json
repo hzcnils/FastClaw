@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "strict": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "isolatedModules": true,
+    "lib": ["ESNext", "DOM"],
+    "types": ["vite/client"],
+    "baseUrl": ".",
+    "paths": {
+      "tauri-download-center-core": ["../tauri-download-center-core/src/index.ts"]
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.vue"]
+}

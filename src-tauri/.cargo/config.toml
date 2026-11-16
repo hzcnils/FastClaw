@@ -1,0 +1,19 @@
+[build]
+jobs = 2
+
+[target.x86_64-pc-windows-msvc]
+# NOTE: codegen-units raised to 8 (from 1) — debug builds need more, not fewer,
+# units to keep per-rustc memory low. Combined with jobs=2 this caps peak memory.
+# If rustc still hits STATUS_STACK_BUFFER_OVERRUN, set RUST_MIN_STACK=8388608.
+rustflags = [
+    "-C", "codegen-units=8",
+    "-C", "opt-level=0",
+    "-C", "debug-assertions=no",
+    "-C", "debuginfo=0",
+    "-C", "link-args=/STACK:33554432,33554432",
+]
+
+[net]
+retry = 1
+[profile.dev]
+debug-assertions = false

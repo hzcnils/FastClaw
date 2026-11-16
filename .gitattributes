@@ -1,0 +1,24 @@
+# ── SQL 迁移文件：换行符必须固定为 LF ──────────────────────────────────────
+# sqlx 在编译期把迁移文件内容嵌入二进制，并据此计算 sha384 校验和存进
+# _sqlx_migrations。校验和是对**文件原始字节**算的，所以换行符一变，校验和就变。
+#
+# Windows 上 core.autocrlf 默认为 true，git 检出时会把 LF 转成 CRLF。
+# 同一份仓库在不同机器、或同一台机器不同检出状态下，工作区换行符可能不同，
+# 于是「已应用」的迁移会集体报 checksum 不一致，程序直接启动失败：
+#   run migrations error: migration N was previously applied but has been modified
+#
+# 固定为 LF 后，校验和跨平台、跨检出状态稳定。
+src-tauri/migrations/*.sql text eol=lf
+
+# ── GitHub 语言统计：主语言标记为 Rust ──────────────────────────────────
+# GitHub Linguist 按文件字节数占比判定主语言。本项目前端（Vue/TS/JS）体量
+# 大于 Rust，默认会被标成 Vue。将前端语言排除出统计后，Rust 即为主语言。
+*.vue  -linguist-detectable
+*.ts   -linguist-detectable
+*.tsx  -linguist-detectable
+*.js   -linguist-detectable
+*.mjs  -linguist-detectable
+*.cjs  -linguist-detectable
+*.css  -linguist-detectable
+*.scss -linguist-detectable
+*.html -linguist-detectable

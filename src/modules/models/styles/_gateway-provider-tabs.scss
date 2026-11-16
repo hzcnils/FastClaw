@@ -1,0 +1,23 @@
+.gateway-tabs { border-bottom:1px solid var(--border-color); margin-bottom:8px; }
+.gateway-tabs-header { display:flex; align-items:center; }
+.gateway-tabs-el { flex:1; min-width:0; overflow:visible; }
+.gateway-tabs-el :deep(.el-tabs__header) { margin:0; border-bottom:0; }
+.gateway-tabs-el :deep(.el-tabs__nav-wrap::after) { display:none; }
+.gateway-tabs-el :deep(.el-tabs__item) { padding:0 16px; height:40px; line-height:40px; font-size:var(--font-size-base); color:var(--text-secondary); }
+.gateway-tabs-el :deep(.el-tabs__item.is-active) { color:var(--color-primary); font-weight:600; }
+.gateway-tabs-el :deep(.el-tabs__active-bar) { height:2px; background:var(--color-primary); }
+.tab-label-content { display:inline-flex; align-items:center; gap:8px; white-space:nowrap; }
+.btn-add-tab { flex-shrink:0; margin-left:8px; padding:6px 16px; background:var(--btn-primary-bg,var(--color-primary)); color:var(--btn-primary-text,#fff); border:1px solid var(--btn-primary-border,transparent); border-radius:6px; cursor:pointer; display:flex; align-items:center; transition:.2s; }
+.btn-add-tab:hover { background:var(--btn-primary-hover-bg,var(--color-primary)); color:var(--btn-primary-hover-text,#fff); border-color:var(--btn-primary-hover-border,transparent); }
+.gateway-actions-row { display:flex; align-items:center; justify-content:space-between; padding:6px 0 10px; }
+.current-provider-name { font-size:var(--font-size-base); font-weight:500; color:var(--text-primary); }
+.gateway-actions-right { display:flex; align-items:center; gap:8px; }
+.btn-icon { border:0; background:transparent; color:var(--text-secondary); cursor:pointer; width:35px; height:35px; }
+.btn-delete-provider:hover { color:var(--color-danger); }
+.gateway-empty-hint { padding:8px 16px; color:var(--text-secondary); font-size:var(--font-size-base); font-style:italic; }
+.toggle-switch { position:relative; display:inline-block; width:44px; height:24px; }
+.toggle-switch input { opacity:0; width:0; height:0; }
+.slider { position:absolute; cursor:pointer; inset:0; background:#ccc; transition:.4s; border-radius:24px; }
+.slider:before { position:absolute; content:""; height:18px; width:18px; left:3px; bottom:3px; background:#fff; transition:.4s; border-radius:50%; }
+input:checked + .slider { background:var(--color-primary); }
+input:checked + .slider:before { transform:translateX(20px); }

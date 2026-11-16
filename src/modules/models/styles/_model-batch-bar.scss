@@ -1,0 +1,9 @@
+.manage-bar { display:flex; align-items:center; gap:12px; padding:12px 16px; background:var(--bg-hover); border-radius:8px; margin-bottom:16px; }
+.selected-count { font-size:var(--font-size-md); color:var(--text-secondary); }
+.manage-spacer { flex:1; }
+button { padding:6px 16px; border-radius:4px; cursor:pointer; color:#fff; border:0; font-size:var(--font-size-md); font-weight:500; }
+button:disabled { opacity:.5; cursor:not-allowed; }
+.btn-select-all { background:var(--btn-primary-bg,var(--color-primary)); }
+.btn-start { background:#20c997; }
+.btn-stop { background:#fa9a02; }
+.btn-detele { background:#dc2626; }

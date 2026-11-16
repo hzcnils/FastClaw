@@ -1,0 +1,7 @@
+.overlay { position:fixed; inset:0; background:rgba(15,23,42,.15); display:flex; align-items:center; justify-content:center; z-index:100; }
+.dialog { background:var(--theme-dailog-color); padding:20px; border-radius:18px; width:400px; border:1px solid var(--border-color); box-shadow:0 24px 70px rgba(15,23,42,.24); }
+.dialog-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; }
+.dialog-header h3 { font-size:var(--font-size-lg); font-weight:600; margin:0; }
+.close-btn { background:none; border:0; cursor:pointer; color:var(--text-secondary); }
+.delete-message { color:var(--text-primary); margin-bottom:20px; }
+.actions { display:flex; justify-content:flex-end; gap:12px; margin-top:15px; }

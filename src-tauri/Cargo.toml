@@ -1,0 +1,115 @@
+[package] 
+name = "FastClaw" 
+version = "0.0.51" 
+edition = "2021" 
+authors = ["西安汇智信息科技有限公司"]
+license = "Apache-2.0" 
+description = "FastClaw 智能助手 - 本地优先的 AI 知识助手桌面应用" 
+ 
+[dependencies] 
+getrandom = "0.2"
+tauri = { version = "2", features = ["tray-icon", "image-ico", "image-png"] }
+tauri-plugin-shell = "2"
+tauri-plugin-dialog = "2"
+tauri-plugin-fs = "2"
+tauri-plugin-window-state = "2"
+ 
+tokio = { version = "1", features = ["full"] } 
+ 
+encoding_rs = "0.8" 
+zip = "2" 
+roxmltree = "0.20" 
+ 
+sqlx = { version = "0.8", default-features = false, features = ["runtime-tokio", "sqlite", "chrono", "uuid", "migrate", "macros"] } 
+ 
+serde = { version = "1", features = ["derive"] } 
+serde_json = "1" 
+toml_edit = "0.22"
+ 
+reqwest = { version = "0.12", features = ["json", "stream", "rustls-tls", "multipart", "cookies"] }
+
+scraper = "0.20"
+
+# web_search 依赖（SERP 解析 + 正文抽取 + 熔断缓存）
+chardetng = "0.1"
+url = "2"
+dashmap = "6"
+ 
+axum = { version = "0.7", features = ["json", "multipart"] } 
+tower-http = { version = "0.5", features = ["cors"] } 
+tokio-util = { version = "0.7", features = ["io"] } 
+ 
+uuid = { version = "1", features = ["v4", "serde"] } 
+ 
+chrono = { version = "0.4", features = ["serde", "clock"] }
+ 
+keyring = { version = "3", features = ["windows-native"] }
+ 
+sysinfo = "0.32" 
+ 
+dirs = "5" 
+fs2 = "0.4"
+
+tracing = "0.1" 
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+tracing-appender = "0.2"
+log = "0.4" 
+ 
+thiserror = "2" 
+anyhow = "1" 
+ 
+futures = "0.3" 
+ 
+async-trait = "0.1"
+tauri-plugin-shared = { path = "../download-packages/plugins/tauri-plugin-shared" }
+tauri-plugin-download-center = { path = "../download-packages/plugins/tauri-plugin-download-center" }
+
+glob = "0.3"
+regex = "1"
+walkdir = "2"
+
+base64 = "0.22"
+
+md-5 = "0.10"
+sha2 = "0.10"
+sha1 = "0.10"
+hmac = "0.12"
+hex = "0.4"
+tempfile = "3"
+
+xcap = "0.9"
+image = "0.25"
+
+# Markdown 公式导出（PDF/DOCX）—— jmisformu 本地子 crate
+# default-features = false：禁用 pdf-ratex，避免 GitHub erweixin/RaTeX 依赖
+jmisformu = { path = "vendors/jmisformu", default-features = false }
+
+# BERT 意图分类（candle + DistilBERT 嵌入匹配）
+candle-core = "0.10"
+candle-nn = "0.10"
+candle-transformers = "0.10"
+tokenizers = "0.21"
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[profile.release]
+debug-assertions = false
+
+[features]
+default = ["custom-protocol"]
+dev-db = []
+devtools = ["tauri/devtools"]
+with-fastplan = []
+custom-protocol = ["tauri/custom-protocol"]
+
+[target.'cfg(windows)'.dependencies]
+half              = "2"                               # f16 浮点，HDR Rgba16F → RGBA8 转换
+rayon             = "1"                               # HDR 像素并行处理
+webview2-checker  = { path = "../crates/webview2-checker" }  # WebView2 版本检测
+webview2-com      = "0.38"                                # WebView2 COM 接口：拦截 PermissionRequested 自动放行麦克风
+
+[target.'cfg(target_os = "macos")'.dependencies]
+objc2           = "0.6"
+objc2-foundation = "0.3"
+objc2-app-kit   = "0.3"

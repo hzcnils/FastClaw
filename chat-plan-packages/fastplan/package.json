@@ -1,0 +1,33 @@
+{
+  "name": "planflow-kit",
+  "version": "0.4.8",
+  "license": "Apache-2.0",
+  "description": "Complete embeddable FastPlan conversation runtime and Vue UI",
+  "type": "module",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "module": "./dist/planflow-kit.js",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/planflow-kit.js"
+    },
+    "./style.css": "./dist/style.css"
+  },
+  "scripts": {
+    "build": "vite build && vue-tsc -p tsconfig.build.json --emitDeclarationOnly",
+    "test": "vitest run",
+    "typecheck": "vue-tsc -p tsconfig.json --noEmit"
+  },
+  "peerDependencies": {
+    "vue": "^3.4.0"
+  },
+  "dependencies": {
+    "chat-renderer": "0.6.2",
+    "planflow-planning-ui": "0.4.6",
+    "planflow-runtime": "0.4.1"
+  }
+}

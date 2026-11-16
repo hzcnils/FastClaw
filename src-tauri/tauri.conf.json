@@ -1,0 +1,38 @@
+{
+  "productName": "FastClaw 多工具、自规划的协同任务龙虾",
+  "version": "0.0.51",
+  "identifier": "com.fastclaw.app",
+  "build": {
+    "beforeDevCommand": "node scripts/frontend-dev.mjs",
+    "beforeBuildCommand": "npm run build",
+    "devUrl": "http://localhost:2420",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [],
+     "security": {
+      "csp": "default-src 'self' 'unsafe-inline' 'unsafe-eval'; connect-src * ws: wss: blob:; img-src * data: blob:; frame-src 'self' http://127.0.0.1:* http://localhost:* https://open.weixin.qq.com https://mp.weixin.qq.com; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; media-src 'self' blob:;"
+    }
+  },
+  "bundle": {
+    "active": false,
+    "targets": ["nsis", "dmg"],
+    "copyright": "Copyright 2026 AllWisdom Inc. All Rights Reserved.",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "macOS": {
+      "minimumSystemVersion": "10.15",
+      "frameworks": [],
+      "exceptionDomain": "",
+      "signingIdentity": null,
+      "providerShortName": null,
+      "entitlements": "./entitlements.plist",
+      "infoPlist": "./Info.plist"
+    }
+  }
+}

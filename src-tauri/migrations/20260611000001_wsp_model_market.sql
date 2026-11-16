@@ -1,0 +1,41 @@
+CREATE TABLE IF NOT EXISTS wsp_model_market (
+    id                  INTEGER NOT NULL,
+    exeName             TEXT NOT NULL,
+    exeOriginName       TEXT NOT NULL,
+    exePath             TEXT NOT NULL,
+    exeRelativePath     TEXT NOT NULL,
+    exeSize             TEXT NOT NULL,
+    exeStoreType        TEXT NOT NULL DEFAULT 'LOCAL',
+    lastRunTime         TEXT,
+    categoryId          INTEGER,
+    subCategoryId       INTEGER,
+    skillName           TEXT NOT NULL UNIQUE,
+    skillDescription    TEXT NOT NULL,
+    skillInstruction    TEXT NOT NULL,
+    skillLicense        TEXT NOT NULL,
+    skillCompatibility  TEXT NOT NULL,
+    skillVersion        TEXT NOT NULL,
+    skillUrl            TEXT,
+    skillWellKnown      TEXT,
+    skillEntryPoint     TEXT,
+    startupArgs         TEXT,
+    startupApiUrl       TEXT,
+    startupApiMethod    TEXT,
+    startupApiParams    TEXT,
+    tag                 TEXT,
+    remark              TEXT,
+    createUser          TEXT,
+    createDept          TEXT,
+    createTime          TEXT,
+    updateUser          TEXT,
+    updateTime          TEXT,
+    status              INTEGER,
+    isDeleted           INTEGER,
+    tenantId            TEXT NOT NULL DEFAULT '000000',
+    PRIMARY KEY (id),
+    UNIQUE (exeName)
+);
+
+CREATE INDEX IF NOT EXISTS idx_wsp_market_category ON wsp_model_market (categoryId);
+CREATE INDEX IF NOT EXISTS idx_wsp_market_tenant_status ON wsp_model_market (tenantId, status, isDeleted);
+CREATE INDEX IF NOT EXISTS idx_wsp_market_last_run ON wsp_model_market (lastRunTime);

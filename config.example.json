@@ -1,0 +1,59 @@
+{
+  "version": 6,
+  "http_server": {
+    "host": "127.0.0.1",
+    "port_start": 5179,
+    "port_end": 5189
+  },
+  "services": {
+    "fastplan": "http://127.0.0.1:23180",
+    "fastkg": "http://127.0.0.1:23140",
+    "shimmy": "http://127.0.0.1:11435",
+    "pinchtab": "http://127.0.0.1:9867",
+    "workflow": "http://127.0.0.1:804",
+    "qdrant": "http://127.0.0.1:23060",
+    "llama_server": "http://127.0.0.1:23100",
+    "asr": ""
+  },
+  "knowledge": {
+    "vector_backend": "qdrant",
+    "vector_url": "",
+    "vector_api_key_env": "FASTCLAW_VECTOR_API_KEY",
+    "embedding_url": "",
+    "embedding_model": "bge-m3",
+    "embedding_api_key_env": "FASTCLAW_EMBEDDING_API_KEY",
+    "reranker_url": "",
+    "reranker_model": "bge-reranker-v2-m3",
+    "reranker_api_key_env": "FASTCLAW_RERANKER_API_KEY"
+  },
+  "remote_servers": {
+    "download_api_base_url": "",
+    "download_api_base_url_private": "",
+    "model_sync_url": "",
+    "fastci_base_url": "",
+    "fastci_model_download_url": "",
+    "independent_model_data": false,
+    "independent_model_api_url": ""
+  },
+  "auth": {
+    "allowed_providers": [],
+    "sso_type": "local"
+  },
+  "menus": {},
+  "settings": {},
+  "branding": {
+    "company_name": "",
+    "app_name": "FastClaw",
+    "app_logo": "",
+    "chat_model_icon": ""
+  },
+  "webview2": {
+    "min_version": "148.0.0.0",
+    "online_installer_url": "https://go.microsoft.com/fwlink/p/?LinkId=2124703",
+    "offline_installer_url": "",
+    "network_timeout_secs": 2,
+    "internet_probes": [
+      { "type": "tcp", "target": "go.microsoft.com:443" }
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+[package]
+name        = "webview2-checker"
+version     = "0.1.0"
+edition     = "2021"
+description = "Windows WebView2 and Linux WebKitGTK runtime detection with network-aware remediation"
+license     = "MIT"
+
+[lib]
+name = "webview2_checker"
+
+[target.'cfg(windows)'.dependencies]
+winreg = "0.52"

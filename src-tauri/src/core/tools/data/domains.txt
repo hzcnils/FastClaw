@@ -1,0 +1,14 @@
+# 垂域站点元数据。格式：域名|分类|权重|备注
+# 分类用逗号分隔，权重 0~1（越大越优先）。# 开头或空行忽略。
+# 分类约定：military(军工) academic(高校/学术) enterprise(企业工商) books(图书) general(通用)
+# 老梁维护本文件：加站/改权重/改分类直接改这里，重编译生效。
+aiqicha.baidu.com|enterprise|0.55|爱企查，工商登记（需登录只取摘要）
+tianyancha.com|enterprise|0.50|天眼查
+qcc.com|enterprise|0.50|企查查
+qixin.com|enterprise|0.45|启信宝
+xueshu.baidu.com|academic|0.45|百度学术
+cnki.net|academic|0.45|知网
+dangdang.com|books|0.40|当当图书
+book.jd.com|books|0.40|京东图书
+douban.com|general|0.35|豆瓣
+orcid.org|academic|0.40|ORCID 学者标识

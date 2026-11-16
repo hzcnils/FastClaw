@@ -1,0 +1,3 @@
+[default]
+description = "Allows the download center frontend package to manage download tasks."
+permissions = ["allow-execute"]

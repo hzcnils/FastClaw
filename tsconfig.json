@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "strict": true,
+    "jsx": "preserve",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "lib": ["ESNext", "DOM"],
+    "skipLibCheck": true,
+    "noEmit": true,
+    "paths": {
+      "@/*": ["./src/*"],
+      "tauri-download-center-core": ["./download-packages/packages/tauri-download-center-core/src/index.ts"],
+      "tauri-download-center-vue": ["./download-packages/packages/tauri-download-center-vue/src/index.ts"]
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.vue"],
+  "exclude": [
+    "src/views/knowledge/KnowledgeBaseDetail.vue",
+    "src/views/knowledge/components/ChunkQAModal.vue"
+  ],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}

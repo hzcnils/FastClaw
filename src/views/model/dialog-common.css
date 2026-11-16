@@ -1,0 +1,174 @@
+/* 共享弹窗样式 — 从 ModelsView.vue 提取，供 model/ 下弹窗组件共用 */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.15);
+  backdrop-filter: blur(0px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.dialog {
+  background: var(--theme-dailog-color);
+  padding: 20px;
+  border-radius: 18px;
+  width: 400px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 24px 70px rgba(15, 23, 42, 0.24);
+}
+
+.dialog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.dialog-header h3 {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  margin: 0;
+}
+
+.close-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--text-secondary);
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  padding: 0;
+  transition: background-color 0.18s ease, color 0.18s ease;
+}
+
+.close-btn:hover {
+  background: var(--dropdown-hover-color, var(--bg-hover)) !important;
+  color: var(--text-primary);
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 7px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-size: var(--font-size-base);
+  outline: none;
+  background: transparent;
+  color: var(--text-primary);
+}
+
+.form-group :deep(.el-select .el-select__wrapper) {
+   padding: 10px;
+  height: auto !important;
+  min-height: unset !important;
+  box-sizing: border-box;
+  background: transparent !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 6px !important;
+  box-shadow: none !important;
+} 
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.btn-cancel,
+.btn-confirm {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  padding: 6px 16px;
+  margin: 0;
+  box-sizing: border-box;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: var(--font-size-md);
+  font-weight: 500;
+}
+
+.btn-confirm {
+  background: var(--btn-primary-bg, var(--color-primary));
+  color: var(--btn-primary-text, #fff);
+  border: 1px solid var(--btn-primary-border, transparent);
+}
+
+.btn-confirm:hover {
+  background: var(--btn-primary-hover-bg, var(--color-primary));
+  color: var(--btn-primary-hover-text, #fff);
+  border-color: var(--btn-primary-hover-border, transparent);
+}
+
+.btn-cancel {
+  color: var(--btn-secondary-text);
+  background: var(--cancel-btn-color);
+  border: 1px solid var(--btn-secondary-border);
+}
+
+.btn-cancel:hover {
+  background: var(--cancel-btn-hover-color);
+  color: var(--btn-secondary-hover-text);
+  border-color: var(--btn-secondary-hover-border);
+}
+
+.large-dialog {
+  width: 700px;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
+.password-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-input-wrap input {
+  width: 100%;
+  padding-right: 36px;
+}
+
+.password-input-wrap .eye-btn {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: all 0.18s ease;
+}
+
+.password-input-wrap .eye-btn:hover {
+  color: var(--text-primary);
+  background: var(--bg-hover);
+}
+
+input[type="password"]::-ms-reveal {
+  display: none !important;
+}
+

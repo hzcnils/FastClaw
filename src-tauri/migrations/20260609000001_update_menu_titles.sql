@@ -1,0 +1,9 @@
+UPDATE custom_menus SET title = '语音识别', title_en = 'Speech Recognition' WHERE title = '离线语音识别';
+UPDATE custom_menus SET title = 'ASR文件', title_en = 'ASR File' WHERE title = '通用ASR文件';
+UPDATE custom_menus SET title = 'ASR流式', title_en = 'ASR Streaming' WHERE title = '通用ASR流式';
+UPDATE custom_menus SET title = '文字识别', title_en = 'Text Recognition' WHERE title = '通用文字识别';
+UPDATE custom_menus SET title = '手写识别', title_en = 'Handwriting Recognition' WHERE title = '手写体识别';
+UPDATE custom_menus SET title = '表格识别', title_en = 'Table Recognition' WHERE title = '表格结构识别';
+UPDATE custom_menus SET title = '抽取音频', title_en = 'Extract Audio' WHERE title = '视频抽取音频';
+UPDATE custom_menus SET title = '标书检查', title_en = 'Tender Verification' WHERE title = '标书偏离表检查';
+UPDATE custom_menus SET title = '会议纪要', title_en = 'Meeting Minutes' WHERE title = '会议纪要整理';

@@ -1,0 +1,53 @@
+[package]
+name = "jmisformu"
+version = "0.2.0"
+edition = "2021"
+rust-version = "1.82"
+description = "纯 Rust 后端：Markdown 数学公式导出为 PDF 矢量图 / Word 可编辑公式 (OMML)"
+license = "MIT OR Apache-2.0"
+autoexamples = false
+
+[lib]
+name = "jmisformu"
+path = "src/lib.rs"
+
+[dependencies]
+# === 公式上游：LaTeX -> MathML ===
+pulldown-latex = "0.7"
+
+# === MathML 解析（自写 OMML 映射器使用）===
+roxmltree = "0.20"
+
+# === Markdown 解析 ===
+pulldown-cmark = "0.12"
+
+# === DOCX 打包（deflate 压缩）===
+flate2 = "1"
+
+# === PDF 渲染（公式 SVG -> 矢量嵌入 PDF）===
+# rev 钉死：git 依赖不钉 rev 会导致构建不可复现（上游一次 push 即改变行为）。
+ratex-svg    = { git = "https://github.com/erweixin/RaTeX", rev = "a0527b7b3b2b512063ea3d4607adf58322bdfcaf", package = "ratex-svg", features = ["embed-fonts"], optional = true }
+ratex-parser = { git = "https://github.com/erweixin/RaTeX", rev = "a0527b7b3b2b512063ea3d4607adf58322bdfcaf", package = "ratex-parser", optional = true }
+ratex-layout = { git = "https://github.com/erweixin/RaTeX", rev = "a0527b7b3b2b512063ea3d4607adf58322bdfcaf", package = "ratex-layout", optional = true }
+ratex-types  = { git = "https://github.com/erweixin/RaTeX", rev = "a0527b7b3b2b512063ea3d4607adf58322bdfcaf", package = "ratex-types",  optional = true }
+
+# SVG 嵌入 + 页面排版（svg2pdf / pdf-writer 由 printpdf 的 svg feature 传递引入，无需直接声明）
+printpdf = { version = "0.7", features = ["svg", "font_subsetting"] }
+ttf-parser = "0.20"
+
+# 可选：公式预渲染并行化
+rayon = { version = "1", optional = true }
+
+# 错误处理 / 序列化
+thiserror = "2"
+serde = { version = "1", features = ["derive"] }
+
+[dev-dependencies]
+# 集成测试用来独立拆包/校验产物，不进入正式依赖树
+flate2 = "1"
+roxmltree = "0.20"
+
+[features]
+default = ["pdf-ratex"]
+pdf-ratex = ["dep:ratex-svg", "dep:ratex-parser", "dep:ratex-layout", "dep:ratex-types"]
+parallel = ["dep:rayon"]

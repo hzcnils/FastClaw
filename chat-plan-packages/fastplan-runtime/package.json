@@ -1,0 +1,13 @@
+{
+  "name": "planflow-runtime",
+  "version": "0.4.1",
+  "license": "Apache-2.0",
+  "description": "Reusable FastPlan session, planning and execution runtime for Vue applications",
+  "type": "module",
+  "files": ["dist"],
+  "module": "./dist/planflow-runtime.js",
+  "types": "./dist/types/index.d.ts",
+  "exports": { ".": { "types": "./dist/types/index.d.ts", "import": "./dist/planflow-runtime.js" } },
+  "scripts": { "build": "vite build && tsc -p tsconfig.build.json", "test": "vitest run", "typecheck": "tsc -p tsconfig.json" },
+  "peerDependencies": { "vue": "^3.4.0" }
+}

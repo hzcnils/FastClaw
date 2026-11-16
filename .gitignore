@@ -1,0 +1,71 @@
+# Rust 编译产物
+src-tauri/target/
+**/target/
+
+# 本地运行时数据/数据库
+config.json
+.env
+.env.*
+!.env.example
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+src-tauri/storage/
+src-tauri/output/
+src-tauri/temp/
+src-tauri/temp_exports/
+src-tauri/temp_images/
+src-tauri/temp_uploads/
+src-tauri/uploads/
+src-tauri/crash-logs/
+
+# 前端打包产物
+dist
+
+.idea/
+.vscode/
+.workbuddy
+/.tmp-*
+/temp_*
+
+# 前端依赖
+node_modules
+
+# 开发临时目录（历史曾落在仓库内；现默认改到 E:\AiModel\fastclaw-tmp）
+.tmp/
+
+# Legacy local copies; reusable code is tracked in the vendored workspaces.
+/packages/
+/plugins/
+
+data/FastKGService/storage
+data/FastKGService/
+data/File2Md/
+data/shimmy/
+src-tauri/binaries/
+src-tauri/intent-model/
+update/*.exe
+*.gguf
+*.safetensors
+node_modules.zip
+.claude
+
+# 运行时崩溃日志
+crash-logs/
+
+# 打包压缩包
+public.zip
+*.tar.gz
+*.trace
+*.har
+docs/analysis/*.json
+docs/analysis/*.json.gz
+src/views/agent/agent.zip
+.codex-tmp/package-tarball-consumer/
+
+# 误放的 vendor 压缩包/目录（勿入库）
+src-tauri/vendors/**/*.zip
+src-tauri/vendors/**/*.tar.gz
+src-tauri/vendors/files */

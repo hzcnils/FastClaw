@@ -1,0 +1,402 @@
+/* Models 模块中由 Element Plus Teleport 到 body 的弹层，以及跨主题覆盖。 */
+/* 弹窗 el-select 与原生输入框一致 */
+html .dialog .el-select__wrapper {
+  padding: 10px !important;
+  height: auto !important;
+  min-height: unset !important;
+  box-sizing: border-box !important;
+  background: transparent !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 6px !important;
+  box-shadow: none !important;
+  font-size: var(--font-size-base) !important;
+  line-height: normal !important;
+}
+
+/* 同步模型确认弹窗：确定/取消按钮一行靠右；高度统一为 32px；取消与主题弹窗一致；关闭为纯图标 */
+html .sync-models-confirm .el-message-box__btns {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: flex-end !important;
+  flex-wrap: nowrap !important;
+  gap: 8px !important;
+}
+
+html .sync-models-confirm .el-message-box__btns .el-button {
+  width: auto !important;
+  min-width: 76px !important;
+  height: 32px !important;
+  padding: 0 16px !important;
+  box-sizing: border-box !important;
+}
+
+html .sync-models-confirm .el-message-box__btns .el-button.sync-models-confirm-cancel,
+html .sync-models-confirm .el-message-box__btns .el-button--default:not(.el-button--primary) {
+  color: var(--btn-secondary-text) !important;
+  background: var(--cancel-btn-color) !important;
+  border: 1px solid var(--btn-secondary-border) !important;
+  box-shadow: none !important;
+}
+
+html .sync-models-confirm .el-message-box__btns .el-button.sync-models-confirm-cancel:hover,
+html .sync-models-confirm .el-message-box__btns .el-button--default:not(.el-button--primary):hover {
+  background: var(--cancel-btn-hover-color) !important;
+  color: var(--btn-secondary-hover-text) !important;
+  border-color: var(--btn-secondary-hover-border) !important;
+}
+
+/* 右上角关闭：默认纯图标，悬浮显示背景 */
+html .sync-models-confirm .el-message-box__headerbtn {
+  width: 28px !important;
+  height: 28px !important;
+  top: 12px !important;
+  right: 12px !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 5px !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+html .sync-models-confirm .el-message-box__headerbtn:hover {
+  background: var(--dropdown-hover-color, var(--bg-hover)) !important;
+}
+
+html .sync-models-confirm .el-message-box__headerbtn .el-message-box__close {
+  color: var(--text-secondary) !important;
+  font-size: 14px !important;
+}
+
+html .sync-models-confirm .el-message-box__headerbtn:hover .el-message-box__close {
+  color: var(--text-primary) !important;
+}
+
+/* 导出模型 MessageBox：关闭按钮对齐「添加模型供应商」.close-btn（28×28 方块） */
+html body .el-message-box.models-manage-msgbox .el-message-box__headerbtn {
+  position: absolute !important;
+  top: 16px !important;
+  right: 16px !important;
+  width: 28px !important;
+  height: 28px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  border-radius: 5px !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  outline: none !important;
+  cursor: pointer !important;
+}
+html body .el-message-box.models-manage-msgbox .el-message-box__headerbtn:hover {
+  background: var(--dropdown-hover-color, var(--bg-hover)) !important;
+}
+html body .el-message-box.models-manage-msgbox .el-message-box__headerbtn .el-message-box__close,
+html body .el-message-box.models-manage-msgbox .el-message-box__headerbtn .el-icon {
+  color: var(--text-secondary) !important;
+  font-size: 18px !important;
+  width: 18px !important;
+  height: 18px !important;
+}
+html body .el-message-box.models-manage-msgbox .el-message-box__headerbtn:hover .el-message-box__close,
+html body .el-message-box.models-manage-msgbox .el-message-box__headerbtn:hover .el-icon {
+  color: var(--text-primary) !important;
+}
+
+/* 模型搜索框样式 */
+.model-search-input .el-input__wrapper {
+  display: flex;
+  align-items: center;
+  background: transparent !important;
+  border: 1px solid var(--border-color) !important;
+  box-shadow: none !important;
+  outline: none !important;
+  border-radius: 4px;
+  padding: 6px 6px 6px 12px;
+  min-height: unset !important;
+  transition: border-color 0.2s;
+
+
+}
+
+.model-search-input .el-input__wrapper:hover {
+  border: 1px solid var(--border-color) !important;
+}
+
+.model-search-input .el-input__inner {
+  color: var(--text-primary) !important;
+}
+
+.model-search-input .el-input__inner::placeholder {
+  color: color-mix(in srgb, var(--text-primary) 55%, transparent) !important;
+  opacity: 1;
+}
+
+.model-search-input .el-input__prefix {
+  color: var(--text-secondary) !important;
+}
+
+.model-search-input button.skills-search-clear {
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  max-width: 24px;
+  padding: 0 !important;
+  gap: 0 !important;
+  border-radius: 8px;
+  flex: none;
+  box-sizing: border-box;
+}
+
+/* 供应商来源分类下拉框 */
+.source-category-select .el-select__wrapper {
+  background: transparent !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 4px !important;
+  box-shadow: none !important;
+  padding: 0 8px !important;
+  min-height: 28px !important;
+  height: 28px !important;
+}
+
+.source-category-select .el-select__placeholder,
+.source-category-select .el-select__selected-item {
+  color: var(--text-secondary) !important;
+  font-size: var(--font-size-sm) !important;
+}
+
+.source-category-select .el-select__caret {
+  color: var(--text-secondary) !important;
+}
+
+/* 情景主题（除雾灰调）：模型卡片点击编辑文字白色 */
+.light [data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .m-detail {
+  --text-secondary: #fff !important;
+}
+
+.light [data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .m-val {
+  color: #fff !important;
+}
+
+/* 确保编辑弹窗背景在打包环境正常显示 */
+html .overlay .dialog {
+  background: var(--theme-dailog-color) !important;
+  color: var(--text-primary);
+}
+
+/* 编辑模型 el-dialog 跟随主题 */
+.edit-model-dialog {
+  --el-dialog-bg-color: var(--theme-dailog-color) !important;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.06), transparent), var(--theme-dailog-color) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 18px !important;
+  box-shadow: 0 24px 70px rgba(15, 23, 42, 0.24) !important;
+}
+
+.custom-input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  box-sizing: border-box;
+  outline: none;
+  transition: border 0.2s;
+  background: transparent;
+  color: var(--text-primary);
+}
+
+.custom-input:focus {
+  border: 1px solid var(--border-color);
+}
+
+.manual-add-footer-btn {
+  width: 64px;
+  height: 37px;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: var(--font-size-md);
+  font-weight: 500;
+}
+
+.manual-add-footer-btn--cancel {
+  color: var(--btn-secondary-text);
+  background: var(--cancel-btn-color);
+  border: 1px solid var(--btn-secondary-border);
+}
+
+.manual-add-footer-btn--cancel:hover {
+  background: var(--cancel-btn-hover-color);
+  color: var(--btn-secondary-hover-text);
+  border-color: var(--btn-secondary-hover-border);
+}
+
+.manual-add-footer-btn--confirm {
+  color: var(--btn-primary-text, #fff);
+  background: var(--btn-primary-bg, var(--color-primary));
+  border: 1px solid var(--btn-primary-border, transparent);
+}
+
+.manual-add-footer-btn--confirm:hover:not(:disabled) {
+  background: var(--btn-primary-hover-bg, var(--color-primary));
+  color: var(--btn-primary-hover-text, #fff);
+  border-color: var(--btn-primary-hover-border, transparent);
+}
+
+.manual-add-footer-btn--confirm:disabled {
+  cursor: not-allowed;
+}
+
+.button-cancel {
+  padding: 8px 18px;
+  border: 1px solid var(--btn-secondary-border);
+  border-radius: 4px;
+  background: var(--cancel-btn-color);
+  font-size: var(--font-size-md);
+  color: var(--btn-secondary-text);
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.button-cancel:hover {
+  background: var(--cancel-btn-hover-color);
+  color: var(--btn-secondary-hover-text);
+  border-color: var(--btn-secondary-hover-border);
+}
+
+.addbtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  border: 1px solid var(--btn-primary-border);
+  border-radius: 4px;
+  font-size: var(--font-size-md);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.addbtn:hover:not(:disabled) {
+  background: var(--btn-primary-hover-bg);
+  color: var(--btn-primary-hover-text);
+  border-color: var(--btn-primary-hover-border);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px color-mix(in srgb, var(--btn-primary-hover-bg) 26%, transparent);
+}
+
+.button-confirm {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  border: 1px solid var(--btn-primary-border);
+  border-radius: 4px;
+  font-size: var(--font-size-md);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.button-confirm:hover:not(:disabled) {
+  background: var(--btn-primary-hover-bg);
+  color: var(--btn-primary-hover-text);
+  border-color: var(--btn-primary-hover-border);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px color-mix(in srgb, var(--btn-primary-hover-bg) 26%, transparent);
+}
+
+.modal-close {
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+}
+
+.modal-close:hover {
+  color: var(--text-primary);
+  background: var(--bg-hover);
+}
+
+/* 编辑模型弹窗 - 标签输入框 */
+.tag-inline-input {
+  width: 88px;
+}
+
+.tag-inline-input .el-input__wrapper {
+  height: 25px !important;
+  min-height: 25px !important;
+  padding: 0 8px !important;
+  background: transparent !important;
+  border: 1px solid var(--border-color) !important;
+  box-shadow: none !important;
+  border-radius: 4px !important;
+}
+
+.tag-inline-input .el-input__inner {
+  font-size: var(--font-size-sm) !important;
+  height: 22px !important;
+  line-height: 22px !important;
+}
+
+.tag-input-area {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.el-tag--small {
+  height: 24px;
+  padding: 0 8px;
+  font-size: 12px;
+}
+
+/* 浅色 / 雾灰调：API 密钥、API 地址底线用 --border-color（不影响其它主题） */
+.model-view-container[data-theme-id="simple-light"] .config-input-group > input,
+.model-view-container[data-theme-id="scene-graphite-cyan"] .config-input-group > input {
+  border-bottom-color: var(--border-color);
+}
+
+.model-view-container[data-theme-id="simple-light"] .address-input .el-input__wrapper,
+.model-view-container[data-theme-id="scene-graphite-cyan"] .address-input .el-input__wrapper {
+  border-bottom-color: var(--border-color) !important;
+}
+
+/* 情景主题（除雾灰调）：仅模型管理 API 地址旁的取消按钮，不影响确定/编辑/重置及其它页面按钮 */
+:is(
+  html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]),
+  html.light[data-theme-id="custom-scene"],
+  html[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]),
+  html[data-theme-id="custom-scene"]
+) .model-view-container .config-input-group > button.btn-cancel,
+.model-view-container[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .config-input-group > button.btn-cancel,
+.model-view-container[data-theme-id="custom-scene"] .config-input-group > button.btn-cancel {
+  background: rgba(255, 255, 255, 0.05) !important;
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
+:is(
+  html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]),
+  html.light[data-theme-id="custom-scene"],
+  html[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]),
+  html[data-theme-id="custom-scene"]
+) .model-view-container .config-input-group > button.btn-cancel:hover,
+.model-view-container[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .config-input-group > button.btn-cancel:hover,
+.model-view-container[data-theme-id="custom-scene"] .config-input-group > button.btn-cancel:hover {
+  background: rgba(0, 0, 0, 0.05) !important;
+  background-color: rgba(0, 0, 0, 0.05) !important;
+}
+

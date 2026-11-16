@@ -1,0 +1,39 @@
+# 黑名单。格式：类型|域名
+# 类型：dict(字典/拆字站，噪音) low(低质文档站，降权) unfetchable(需登录/JS渲染，不可抓正文)
+# # 开头或空行忽略。老梁维护本文件。
+dict|hanyu.baidu.com
+dict|dict.baidu.com
+dict|zdic.net
+dict|cidian.51240.com
+dict|xh.5156edu.com
+dict|chazidian.com
+dict|911cha.com
+dict|hydcd.com
+dict|zidianwang.com
+dict|hanyucidian.cn
+dict|kanjijiten.com
+dict|guoxuedashi.net
+low|wenku.baidu.com
+low|doc88.com
+low|docin.com
+low|book118.com
+low|renrendoc.com
+low|taodocs.com
+low|mianfeiwendang.com
+low|hao123.com
+unfetchable|xueshu.baidu.com
+unfetchable|kns.cnki.net
+unfetchable|cnki.net
+unfetchable|wanfangdata.com.cn
+unfetchable|tianyancha.com
+unfetchable|qcc.com
+unfetchable|aiqicha.baidu.com
+unfetchable|zhihu.com
+unfetchable|weibo.com
+unfetchable|linkedin.com
+unfetchable|twitter.com
+unfetchable|x.com
+unfetchable|facebook.com
+unfetchable|instagram.com
+unfetchable|xiaohongshu.com
+unfetchable|douyin.com

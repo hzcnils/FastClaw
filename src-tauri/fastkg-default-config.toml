@@ -1,0 +1,40 @@
+# FastKG 配置文件（由 FastClaw 自动管理）
+# 此文件会在每次启动时由 FastClaw 根据数据库配置自动更新
+
+[server]
+host = "127.0.0.1"
+port = 23140
+
+[embedding]
+model = "bge-m3"
+endpoint = "http://127.0.0.1:23100/v1/embeddings"
+dimension = 1024
+batch_size = 32
+api_key_env = "FASTCLAW_EMBEDDING_API_KEY"
+
+[chunking]
+default_strategy = "semantic"
+default_size = 512
+default_overlap = 50
+min_size = 100
+max_size = 2000
+
+[vector_store]
+backend = "sqlite_vec"
+# 如果使用 qdrant:
+# backend = "qdrant"
+# endpoint = "http://127.0.0.1:23060"
+
+[storage]
+db_type = "sqlite"
+sqlite_path = "fastkg.db"
+index_dir = "fastkg_index"
+file_storage_dir = "fastkg_storage"
+pool_size = 5
+
+[retrieval]
+default_top_k = 5
+hybrid_alpha = 0.7
+rerank_enabled = false
+rerank_model = ""
+rerank_endpoint = ""

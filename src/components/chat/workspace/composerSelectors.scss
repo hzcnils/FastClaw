@@ -1,0 +1,18 @@
+.input-selectors {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 0 10px;
+}
+
+.selectors-left {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  min-width: 0;
+
+  :deep(.el-select .el-select__wrapper) {
+    border-radius: 20px;
+    background: transparent !important;
+  }
+}

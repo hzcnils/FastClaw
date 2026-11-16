@@ -1,0 +1,16 @@
+# `tauri dev` 默认监视整个 src-tauri；运行时写入必须排除，否则会整包重编
+storage/
+storage/**
+crash-logs/
+crash-logs/**
+output/
+temp/
+temp_exports/
+temp_images/
+temp_uploads/
+uploads/
+**/*.db
+**/*.db-wal
+**/*.db-shm
+**/*.log
+binaries/fastagent-server-x86_64-pc-windows-msvc.exe

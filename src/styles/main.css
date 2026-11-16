@@ -1,0 +1,959 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+.light .content-box { background-color: #ffffff00; }
+
+/* 所有 el-input / el-select 样式统一 */
+.el-input__wrapper,
+.el-select__wrapper {
+  background: rgba(0,0,0,0.05) !important;
+  border: 1px solid var(--border-color) !important;
+  min-height: 32px !important;
+  height: 32px !important;
+  box-shadow: none !important;
+}
+/* 个人信息：编辑昵称输入框 */
+.inline-name-editor .el-input__wrapper {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 1px solid var(--border-color) !important;
+  box-shadow: none !important;
+  height: auto !important;
+  min-height: 36px !important;
+}
+.inline-name-editor .el-input,
+.inline-name-editor .el-input__inner {
+  font-size: var(--font-size-2xl) !important;
+}
+/* 个人信息：保存昵称按钮，与「立即充值」同款主色 */
+html body .account-profile .inline-name-editor .save-name-btn,
+html body .inline-name-editor .save-name-btn,
+html body .inline-name-editor .icon-btn.save-name {
+  display: inline-flex !important;
+  width: 26px !important;
+  height: 26px !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  border: 1px solid var(--btn-primary-border, transparent) !important;
+  border-radius: 4px !important;
+  color: var(--btn-primary-text, #fff) !important;
+  background: var(--btn-primary-bg, var(--color-primary)) !important;
+  background-color: var(--btn-primary-bg, var(--color-primary)) !important;
+  box-shadow: none !important;
+  cursor: pointer !important;
+}
+html body .account-profile .inline-name-editor .save-name-btn:hover:not(:disabled),
+html body .inline-name-editor .save-name-btn:hover:not(:disabled),
+html body .inline-name-editor .icon-btn.save-name:hover:not(:disabled) {
+  border-color: var(--btn-primary-hover-border, transparent) !important;
+  color: var(--btn-primary-hover-text, #fff) !important;
+  background: var(--btn-primary-hover-bg, var(--color-primary)) !important;
+  background-color: var(--btn-primary-hover-bg, var(--color-primary)) !important;
+}
+/* 管理/取消昵称编辑：悬浮改背景，图标颜色不变 */
+html body .icon-btn.edit-name:hover,
+html body .inline-name-editor .icon-btn.cancel-name:hover {
+  color: var(--text-secondary, #909399) !important;
+  background: var(--bg-hover, #f5f7fa) !important;
+  background-color: var(--bg-hover, #f5f7fa) !important;
+}
+.skills-filter-menu { background: var(--theme-dailog-color) !important; }
+.el-message-box { background: var(--theme-dailog-color) !important; color: var(--text-primary) !important; }
+.el-message-box__title { color: var(--text-primary) !important; }
+/* 弹窗内关闭按钮 hover 背景 */
+.dark .hover\:bg-gray-100:hover[class*="rounded-lg"][class*="text-gray-400"],
+.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .hover\:bg-gray-100:hover[class*="rounded-lg"][class*="text-gray-400"] {
+  background: var(--dropdown-hover-color) !important;
+}
+.md-editor-previewOnly *,
+.user-content,
+.doc-editor .editor-main .editor-content {
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+/* 输入框/下拉框文字颜色按主题 */
+html.light[data-theme-id="simple-light"] .el-input__inner,
+html.light[data-theme-id="simple-light"] .el-select__placeholder,
+html.light[data-theme-id="scene-graphite-cyan"] .el-input__inner,
+html.light[data-theme-id="scene-graphite-cyan"] .el-select__placeholder,
+html.light[data-theme-id="scene-graphite-cyan"] .el-select__selected-item { color: #1f2937 !important; }
+html.dark .el-input__inner,
+
+.el-input__inner,
+.el-select__placeholder,
+.el-select__placeholder,
+.el-select__selected-item { 
+  color: var(--text-color-light-black); 
+}
+
+
+/* 全局取消按钮：与 .theme-action--secondary 一致 */
+.btn-cancel {
+  padding: 8px 18px;
+  border-radius: 4px;
+  color: var(--btn-secondary-text) !important;
+  background: var(--cancel-btn-color) !important;
+  border-color: var(--btn-secondary-border) !important;
+  border-radius: 4px !important;
+  font-weight: 600 !important;
+}
+.btn-cancel:hover {
+  background: var(--cancel-btn-hover-color) !important;
+  color: var(--btn-secondary-hover-text) !important;
+  border-color: var(--btn-secondary-hover-border) !important;
+}
+
+/* 全局确认按钮：跟随主题主按钮样式 */
+.btn-confirm {
+  padding: 8px 18px;
+  border-radius: 4px;
+  color: var(--btn-primary-text) !important;
+  background: var(--btn-primary-bg) !important;
+  border-color: var(--btn-primary-border) !important;
+  border-radius: 4px !important;
+  font-weight: 600 !important;
+}
+.btn-confirm:hover {
+  background: var(--btn-primary-hover-bg) !important;
+  color: var(--btn-primary-hover-text) !important;
+  border-color: var(--btn-primary-hover-border) !important;
+}
+
+
+
+/* 情景主题（除雾灰调）：布局分割线白色30% */
+/* html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .title-bar { border-bottom-color: rgba(255,255,255,0.30) !important; }
+html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .sidebar { border-right-color: rgba(255,255,255,0.30) !important; }
+html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .tab-bar { border-bottom-color: rgba(255,255,255,0.30) !important; }
+html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .menu-bottom::before { background: rgba(255,255,255,0.30) !important; } */
+
+/* 模型市场上传弹窗分类下拉：背景跟随主题弹窗色
+   需压过 useLog 等页面里对 .el-select-dropdown 的情景主题全局覆盖 */
+html.light .category-select-popper,
+html.dark .category-select-popper,
+html.light .category-select-popper.el-popper,
+html.dark .category-select-popper.el-popper,
+html.light .category-select-popper.el-select__popper,
+html.dark .category-select-popper.el-select__popper,
+html.light .category-select-popper .el-select-dropdown,
+html.dark .category-select-popper .el-select-dropdown,
+html.light[data-theme-id^="scene-"] .category-select-popper,
+html.light[data-theme-id^="scene-"] .category-select-popper.el-popper,
+html.light[data-theme-id^="scene-"] .category-select-popper.el-select__popper,
+html.light[data-theme-id^="scene-"] .category-select-popper .el-select-dropdown,
+html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .category-select-popper,
+html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .category-select-popper.el-popper,
+html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .category-select-popper.el-select__popper,
+html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .category-select-popper .el-select-dropdown,
+html.light[data-theme-id="custom-scene"] .category-select-popper,
+html.light[data-theme-id="custom-scene"] .category-select-popper .el-select-dropdown {
+  --el-bg-color-overlay: var(--theme-dailog-color) !important;
+  --el-bg-color: var(--theme-dailog-color) !important;
+  --el-popper-bg-color-light: var(--theme-dailog-color) !important;
+  background: var(--theme-dailog-color) !important;
+  background-color: var(--theme-dailog-color) !important;
+  background-image: none !important;
+}
+html.light .category-select-popper .el-select-dropdown__item,
+html.dark .category-select-popper .el-select-dropdown__item,
+html.light[data-theme-id^="scene-"] .category-select-popper .el-select-dropdown__item,
+html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .category-select-popper .el-select-dropdown__item {
+  color: var(--text-primary) !important;
+}
+html.light .category-select-popper .el-select-dropdown__item:hover,
+html.dark .category-select-popper .el-select-dropdown__item:hover,
+html.light[data-theme-id^="scene-"] .category-select-popper .el-select-dropdown__item:hover,
+html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .category-select-popper .el-select-dropdown__item:hover {
+  background-color: var(--bg-hover) !important;
+}
+html.light .category-select-popper .el-popper__arrow::before,
+html.dark .category-select-popper .el-popper__arrow::before,
+html.light[data-theme-id^="scene-"] .category-select-popper .el-popper__arrow::before,
+html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .category-select-popper .el-popper__arrow::before {
+  background: var(--theme-dailog-color) !important;
+  border-color: transparent !important;
+}
+
+/* Skills 新建弹窗：暗色/情景主题白色文字 */
+.dark .skills-create-dialog,
+.dark .skills-create-dialog label,
+.dark .skills-create-dialog button,
+.dark .skills-create-dialog input,
+.dark .skills-create-dialog textarea,
+.dark .skills-create-dialog select,
+.dark .skills-create-dialog .text-gray-900,
+.dark .skills-create-dialog .text-gray-600,
+.dark .skills-create-dialog .text-gray-500,
+.dark .skills-create-dialog .text-gray-400,
+.dark .skills-create-dialog .text-gray-700,
+.dark .skills-create-dialog .text-sm { color: #fff !important; }
+.light .skills-create-dialog[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]),
+.light .skills-create-dialog[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) label,
+.light .skills-create-dialog[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) button,
+.light .skills-create-dialog[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) input,
+.light .skills-create-dialog[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) textarea,
+.light .skills-create-dialog[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) select,
+.light .skills-create-dialog[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .text-gray-600,
+.light .skills-create-dialog[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .text-gray-500,
+.light .skills-create-dialog[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .text-gray-700,
+.light .skills-create-dialog[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .text-sm { color: #fff !important; }
+.dark .skills-create-dialog input,
+.dark .skills-create-dialog textarea,
+.dark .skills-create-dialog select,
+.light .skills-create-dialog input,
+.light .skills-create-dialog textarea,
+.light .skills-create-dialog select { background: transparent !important; border-color: rgba(255,255,255,0.12); }
+.dark .skills-create-dialog .bg-gray-50,
+.light .skills-create-dialog[data-theme-id^="scene-"] .bg-gray-50 { background: transparent !important; color: #fff !important; }
+/* Skills弹窗输入框高度与下拉框一致 */
+.skills-create-dialog input { height: 38px; box-sizing: border-box; }
+
+/* MCP 创建弹窗：暗色/情景主题白色文字 */
+.dark .mcp-create-dialog label,
+.dark .mcp-create-dialog .text-gray-600,
+.light .mcp-create-dialog[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) label,
+.light .mcp-create-dialog[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .text-gray-600 { color: #fff !important; }
+.light .mcp-create-dialog[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) input,
+.light .mcp-create-dialog[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) select,
+.light .mcp-create-dialog[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) textarea { color: #fff !important; background: transparent !important; border-color: rgba(255,255,255,0.12) !important; }
+.light .mcp-create-dialog[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) input::placeholder,
+.light .mcp-create-dialog[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) textarea::placeholder { color: rgba(255,255,255,0.40) !important; }
+
+/* MCP 导入弹窗：文字白 + 取消按钮hover 10% */
+.dark .mcp-import-dialog,
+.dark .mcp-import-dialog .text-sm,
+.dark .mcp-import-dialog .text-xs,
+.dark .mcp-import-dialog .text-gray-500,
+.dark .mcp-import-dialog .text-gray-600,
+.dark .mcp-import-dialog .text-gray-400,
+.light .mcp-import-dialog[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]),
+.light .mcp-import-dialog[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .text-sm,
+.light .mcp-import-dialog[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .text-xs,
+.light .mcp-import-dialog[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .text-gray-500,
+.light .mcp-import-dialog[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .text-gray-600,
+.light .mcp-import-dialog[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .text-gray-400 { color: #fff !important; }
+.dark .mcp-import-dialog .hover\:bg-gray-100:hover,
+.light .mcp-import-dialog[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .hover\:bg-gray-100:hover { background: rgba(255,255,255,0.10) !important; }
+
+/* ── MCP 服务界面 ── */
+/* 卡片背景：浅色/雾灰调黑色5% */
+.light [data-theme-id="simple-light"] .bg-white[class*="shadow"] { background: #ffffff !important; }
+.light [data-theme-id="scene-graphite-cyan"] .bg-white[class*="shadow"] { background: rgba(0,0,0,0.05) !important; }
+/* 卡片背景：其他情景白色10% */
+.light [data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .bg-white[class*="shadow"]:not(.tools-create-menu):not(.tools-filter-menu):not(.skills-filter-menu) { background: rgba(255,255,255,0.10) !important; }
+/* 情景主题（除雾灰调）：文字白/边框15%/下拉白底黑字/hover不变 */
+.light [data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) input[type="text"],
+.light [data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .relative > button { color: #fff !important; }
+.light [data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .border-gray-100,
+.light [data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .border-gray-200 { border-color: rgba(255,255,255,0.15) !important; }
+
+
+.light [data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .shadow-lg button:hover,
+.light [data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .shadow-xl button:hover { background: rgba(0,0,0,0.05) !important; }
+.light [data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .bg-white[class*="shadow"] .text-gray-500,
+.light [data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .bg-white[class*="shadow"] .text-gray-900,
+.light [data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .bg-white[class*="shadow"] .text-\[\#86909C\],
+.light [data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .bg-white[class*="shadow"] .text-\[\#1D2129\] { color: #fff !important; }
+/* 暗色：切换按钮白字+半透明背景，搜索透明 */
+.dark .view-mode-toggle button { color: #fff !important; }
+.dark .view-mode-toggle button.bg-white { background: rgba(255,255,255,0.15) !important; }
+.dark .view-mode-toggle { background: rgba(0,0,0,0.3) !important; }
+.dark .bg-gray-50,
+.light .bg-gray-50 { background: transparent !important; }
+
+/* 浅色/雾灰调：所有边框5%透明度 */
+.light [data-theme-id="simple-light"] .border-gray-100,
+.light [data-theme-id="simple-light"] .border-gray-200,
+.light [data-theme-id="scene-graphite-cyan"] .border-gray-100,
+.light [data-theme-id="scene-graphite-cyan"] .border-gray-200 { border-color: rgba(0,0,0,0.05) !important; }
+
+/* Skills 空状态白字 + 下拉白字 + 错误区透明（除雾灰调） */
+.light [data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .text-center.py-20,
+.light [data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .text-center.py-20 p,
+.light [data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .text-center.py-20 svg { color: #fff !important; }
+.light [data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .p-7 .shadow-lg button { color: #fff !important; }
+.light [data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .bg-red-50 { background: rgba(255,255,255,0.20) !important;}
+
+/* 暗色：卡片白色5%（排除 Teleport 到 body 的 DAG 右键菜单，避免半透明） */
+.dark .bg-white[class*="shadow"]:not(.fpp-graph-context-menu) { background: rgba(255,255,255,0.05) !important; }
+html.dark body > .fpp-graph-context-menu,
+html.dark .fpp-graph-context-menu.bg-white[class*="shadow"] {
+  background: var(--theme-dailog-color, rgb(42, 43, 47)) !important;
+  background-color: var(--theme-dailog-color, rgb(42, 43, 47)) !important;
+  opacity: 1 !important;
+}
+/* 全界面文字：情景（除雾灰调）/暗色 → 白色，浅色/雾灰调 → 黑色 */
+.light [data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .text-\[\#1D2129\],
+.light [data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .text-\[\#86909C\],
+.dark .text-\[\#1D2129\], .dark .text-\[\#86909C\] { color: #fff !important; }
+.light [data-theme-id="simple-light"] .text-\[\#1D2129\],
+.light [data-theme-id="simple-light"] .text-\[\#86909C\],
+.light [data-theme-id="scene-graphite-cyan"] .text-\[\#1D2129\],
+.light [data-theme-id="scene-graphite-cyan"] .text-\[\#86909C\] { color: #1f2937 !important; }
+
+/* 编辑消息弹窗跟随主题 */
+.edit-message-dialog {
+  --el-dialog-bg-color: var(--theme-dailog-color) !important;
+  --el-text-color-primary: var(--text-primary) !important;
+  background: linear-gradient(135deg, rgba(255,255,255,0.06), transparent), var(--theme-dailog-color) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 18px !important;
+  box-shadow: 0 24px 70px rgba(15, 23, 42, 0.24) !important;
+} 
+.edit-message-dialog .el-dialog__title { color: var(--text-primary) !important; }
+.edit-message-dialog .el-dialog__headerbtn .el-dialog__close { color: var(--text-secondary) !important; }
+.edit-message-dialog .el-dialog__footer .el-button:not(.el-button--primary) {
+  --el-button-bg-color: var(--cancel-btn-color);
+  --el-button-text-color: var(--btn-secondary-text);
+  --el-button-border-color: var(--btn-secondary-border);
+  color: var(--btn-secondary-text) !important;
+  background: var(--cancel-btn-color) !important;
+  border-color: var(--btn-secondary-border) !important;
+  font-weight: 500 !important;
+}
+.edit-message-dialog .el-dialog__footer .el-button--primary {
+  color: var(--btn-primary-text) !important;
+  background: var(--btn-primary-bg) !important;
+  border-color: var(--btn-primary-border) !important;
+  font-weight: 600 !important;
+}
+.edit-message-dialog .el-textarea__inner {
+  color: var(--text-primary) !important;
+  background: var(--bg-primary) !important;
+  border-color: var(--border-color) !important;
+}
+
+/* 聊天删除提示弹窗跟随主题 */
+.chat-delete-dialog {
+  --el-bg-color-overlay: var(--theme-dailog-color) !important;
+  --el-text-color-primary: var(--text-primary) !important;
+  background: linear-gradient(135deg, rgba(255,255,255,0.06), transparent), var(--theme-dailog-color) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 18px !important;
+  box-shadow: 0 24px 70px rgba(15, 23, 42, 0.24) !important;
+}
+.chat-delete-dialog .el-message-box__title { color: var(--text-primary) !important; }
+.chat-delete-dialog .el-message-box__message { color: var(--text-secondary) !important; }
+.chat-delete-dialog .el-message-box__btns .el-button:not(.el-button--primary) {
+  --el-button-bg-color: var(--cancel-btn-color);
+  --el-button-text-color: var(--btn-secondary-text);
+  --el-button-border-color: var(--btn-secondary-border);
+  color: var(--btn-secondary-text) !important;
+  background: var(--cancel-btn-color) !important;
+  border-color: var(--btn-secondary-border) !important;
+  font-weight: 500 !important;
+}
+.chat-delete-dialog .el-message-box__btns .el-button--primary {
+  color: var(--btn-primary-text) !important;
+  background: var(--btn-primary-bg) !important;
+  border-color: var(--btn-primary-border) !important;
+  font-weight: 600 !important;
+}
+
+/* el-popconfirm 删除提示弹窗按钮跟随主题 */
+.el-popconfirm .el-button {
+  border-radius: 4px !important;
+  font-weight: 600 !important;
+}
+.el-popconfirm .el-button:not(.el-button--primary) {
+  color: var(--btn-secondary-text) !important;
+  background: var(--btn-secondary-bg) !important;
+  border-color: var(--btn-secondary-border) !important;
+}
+.el-popconfirm .el-button--primary {
+  color: var(--btn-primary-text) !important;
+  background: var(--btn-primary-bg) !important;
+  border-color: var(--btn-primary-border) !important;
+}
+
+/* 搜索输入框（知识库/Agent）文字、占位符、边框颜色 */
+.light [data-theme-id="simple-light"] .kb-search-input input::placeholder,
+.light [data-theme-id="scene-graphite-cyan"] .kb-search-input input::placeholder {
+  color: #6b7280 !important;
+}
+.light [data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .kb-search-input input::placeholder {
+  color: rgba(255,255,255,0.60) !important;
+}
+.light [data-theme-id="simple-light"] .kb-search-input .el-input__wrapper,
+.light [data-theme-id="scene-graphite-cyan"] .kb-search-input .el-input__wrapper {
+  border-color: rgba(0,0,0,0.30) !important;
+}
+.light [data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .kb-search-input .el-input__wrapper {
+  border-color: rgba(255,255,255,0.30) !important;
+}
+
+/* 情景主题下（除雾灰调）问答目录导航样式 */
+.light [data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .nav-item .nav-text {
+  color: #ffffff !important;
+}
+.light [data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .nav-item.is-active .nav-text {
+  background: #ffffff !important;
+  color: var(--color-primary) !important;
+  padding: 0 4px !important;
+  border-radius: 4px !important;
+}
+.light [data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .nav-item:hover .nav-text {
+  color: var(--color-primary) !important;
+}
+
+/* Agent 创建弹窗跟随主题（与模型市场上传弹窗一致） */
+.agent-create-dialog {
+  --el-dialog-bg-color: var(--theme-dailog-color) !important;
+  --el-overlay-bg-color: rgba(15, 23, 42, 0.36) !important;
+  background: linear-gradient(135deg, rgba(255,255,255,0.06), transparent), var(--theme-dailog-color) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 18px !important;
+  box-shadow: 0 24px 70px rgba(15, 23, 42, 0.24) !important;
+}
+.agent-create-dialog .el-dialog__header { border-bottom: 1px solid var(--border-color) !important; }
+.agent-create-dialog .el-dialog__title { color: var(--text-primary) !important; }
+.agent-create-dialog .el-dialog__headerbtn .el-dialog__close { color: var(--text-secondary) !important; }
+.agent-create-dialog .el-dialog__headerbtn {
+  width: 32px !important;
+  height: 32px !important;
+  top: 16px !important;
+  right: 16px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border: none !important;
+  background: transparent !important;
+  border-radius: 8px !important;
+  padding: 0 !important;
+  transition: background 0.2s, color 0.2s;
+}
+.agent-create-dialog .el-dialog__headerbtn:hover {
+  background: var(--dropdown-hover-color) !important;
+}
+.agent-create-dialog .el-dialog__headerbtn:hover .el-dialog__close {
+  color: var(--text-primary) !important;
+}
+.agent-create-dialog .el-form-item__label { color: var(--text-secondary) !important; font-weight: 600 !important; }
+.agent-create-dialog .el-input__wrapper {
+  background: var(--bg-hover) !important;
+  border-color: var(--border-color) !important;
+  box-shadow: none !important;
+  border-radius: 6px !important;
+}
+.agent-create-dialog .el-input__inner { color: var(--text-primary) !important; }
+.agent-create-dialog .el-select .el-input__wrapper { background: var(--bg-hover) !important; }
+.agent-create-dialog .el-textarea__inner {
+  color: var(--text-primary) !important;
+  background: var(--bg-hover) !important;
+  border-color: var(--border-color) !important;
+  border-radius: 6px !important;
+}
+.agent-create-dialog .el-dialog__footer { border-top: 1px solid var(--border-color) !important; }
+
+/* 情景主题（除雾灰调）：Agent弹窗下拉框显示文字白色 */
+html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .agent-create-dialog .el-select__placeholder,
+html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .agent-create-dialog .el-select__selected-item,
+html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .agent-create-dialog .el-select .el-input__inner {
+  color: #fff !important;
+}
+
+
+/* Skills/MCP弹窗下拉框样式与知识库弹窗一致 */
+html body .skills-create-dialog .el-select__wrapper,
+html body .skills-create-dialog .el-input__wrapper,
+.mcp-create-dialog .el-select__wrapper,
+.mcp-create-dialog .el-input__wrapper,
+.mcp-import-dialog .el-select__wrapper,
+.mcp-import-dialog .el-input__wrapper {
+  height: 38px !important;
+  min-height: unset !important;
+  box-sizing: border-box;
+  background: transparent !important;
+  border: 1px solid var(--border-color) !important;
+  box-shadow: none !important;
+}
+.mcp-create-dialog input,
+.mcp-create-dialog textarea,
+.mcp-import-dialog input,
+.mcp-import-dialog textarea {
+  height: 38px;
+  box-sizing: border-box;
+  background: transparent !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+
+
+/* WSP弹窗输入框/下拉框背景边框与设置页一致 */
+html .wsp-view .dialog .category-select .el-select__wrapper,
+html .wsp-view .dialog .el-input__wrapper {
+  background: transparent !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+  height: 38px !important;
+  min-height: 38px !important;
+  box-sizing: border-box !important;
+}
+.wsp-view .dialog input,
+.wsp-view .dialog textarea {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  height: 38px;
+  box-sizing: border-box;
+}
+
+  
+/* 代码块注释颜色 */
+.github-theme .hljs-comment,
+.github-theme .hljs-quote {
+    color: var(--text-three) !important;     /* 改这里 */
+}
+
+/* 
+/* Vibe编程界面左侧文件区域 + 右侧内容区域背景 */
+html.light[data-theme-id="simple-light"] .coding-view .left-sidebar,
+html.light[data-theme-id="simple-light"] .coding-view .sidebar-panel,
+html.light[data-theme-id="simple-light"] .coding-view .file-tree-panel,
+html.light[data-theme-id="simple-light"] .coding-view .panel-content,
+html.light[data-theme-id="simple-light"] .coding-view .sidebar-tabs,
+/* html.light[data-theme-id="simple-light"] .coding-view .main-area, */
+/* html.light[data-theme-id="simple-light"] .coding-view .content-panel, */
+html.light[data-theme-id="simple-light"] .coding-view .coding-chat-panel,
+html.light[data-theme-id="simple-light"] .coding-view .cm6-editor,
+html.light[data-theme-id="simple-light"] .coding-view .cm6-editor .cm-editor,
+html.light[data-theme-id="simple-light"] .coding-view .cm6-editor .cm-content,
+/* html.light[data-theme-id="simple-light"] .coding-view .no-tab-empty, */
+html.light[data-theme-id="scene-graphite-cyan"] .coding-view .left-sidebar,
+html.light[data-theme-id="scene-graphite-cyan"] .coding-view .sidebar-panel,
+html.light[data-theme-id="scene-graphite-cyan"] .coding-view .file-tree-panel,
+html.light[data-theme-id="scene-graphite-cyan"] .coding-view .panel-content,
+html.light[data-theme-id="scene-graphite-cyan"] .coding-view .sidebar-tabs,
+/* html.light[data-theme-id="scene-graphite-cyan"] .coding-view .main-area, */
+/* html.light[data-theme-id="scene-graphite-cyan"] .coding-view .content-panel, */
+html.light[data-theme-id="scene-graphite-cyan"] .coding-view .coding-chat-panel,
+html.light[data-theme-id="scene-graphite-cyan"] .coding-view .cm6-editor,
+html.light[data-theme-id="scene-graphite-cyan"] .coding-view .cm6-editor .cm-editor,
+html.light[data-theme-id="scene-graphite-cyan"] .coding-view .cm6-editor .cm-content
+/* ,
+html.light[data-theme-id="scene-graphite-cyan"] .coding-view .no-tab-empty  */
+{
+  background: #f3f4f6 !important;
+  color:#6b7280;
+}
+/* 同时匹配 custom-scene（调整任意透明度后 theme-id 变为 custom-scene），
+   否则右侧内容区文字颜色会回退而“变灰”/不可读。 */
+:is(html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]), html.light[data-theme-id="custom-scene"]) .coding-view .left-sidebar,
+:is(html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]), html.light[data-theme-id="custom-scene"]) .coding-view .sidebar-panel,
+:is(html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]), html.light[data-theme-id="custom-scene"]) .coding-view .file-tree-panel,
+:is(html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]), html.light[data-theme-id="custom-scene"]) .coding-view .panel-content,
+:is(html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]), html.light[data-theme-id="custom-scene"]) .coding-view .sidebar-tabs {
+  background: transparent !important;
+}
+/* html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .coding-view .main-area, */
+/* html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .coding-view .content-panel, */
+:is(html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]), html.light[data-theme-id="custom-scene"]) .coding-view .coding-chat-panel,
+:is(html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]), html.light[data-theme-id="custom-scene"]) .coding-view .cm6-editor,
+:is(html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]), html.light[data-theme-id="custom-scene"]) .coding-view .cm6-editor .cm-editor,
+:is(html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]), html.light[data-theme-id="custom-scene"]) .coding-view .cm6-editor .cm-content
+/* ,
+html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .coding-view .no-tab-empty  */
+{
+  background: rgba(0,0,0,0.01) !important;
+  color:#f3f4f6;
+} 
+
+/* 情景主题+custom-scene（除雾灰调）：AI回答代码块+表格样式 */
+/* :is(html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]), html.light[data-theme-id="custom-scene"]) .github-theme .md-editor-code-head,
+:is(html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]), html.light[data-theme-id="custom-scene"]) .github-theme .md-editor-code-head *,
+:is(html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]), html.light[data-theme-id="custom-scene"]) .github-theme .md-editor-codetab-label,
+:is(html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]), html.light[data-theme-id="custom-scene"]) .github-theme .md-editor-codetab-label *,
+:is(html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]), html.light[data-theme-id="custom-scene"]) .github-theme .md-editor-code-flag,
+:is(html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]), html.light[data-theme-id="custom-scene"]) .github-theme .md-editor-code-flag * {
+  background: transparent !important;
+} */
+
+
+/* :is(html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]), html.light[data-theme-id="custom-scene"]) .github-theme .md-editor-code-head {
+  border-bottom: 1px solid #e2e8f0 !important;
+} */
+:is(html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]), html.light[data-theme-id="custom-scene"]) .github-theme table th,
+:is(html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]), html.light[data-theme-id="custom-scene"]) .github-theme table td,
+:is(html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]), html.light[data-theme-id="custom-scene"]) .github-theme table tr {
+  background: transparent !important;
+}
+:is(html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]), html.light[data-theme-id="custom-scene"]) .github-theme .md-editor-code {
+  background: rgba(0,0,0,0.03) !important;
+}
+
+/* 情景主题：仅提高代码区文字清晰度，不改背景；强制深色高亮字色足够亮 */
+:is(html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]), html.light[data-theme-id="custom-scene"]) .github-theme .md-editor-code pre code,
+:is(html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]), html.light[data-theme-id="custom-scene"]) .github-theme .md-editor-code .md-editor-code-block {
+  color: #f8fafc !important;
+  --md-theme-code-block-color: #f8fafc;
+}
+
+:is(html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]), html.light[data-theme-id="custom-scene"]) .github-theme .md-editor-code .hljs-keyword,
+:is(html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]), html.light[data-theme-id="custom-scene"]) .github-theme .md-editor-code .hljs-selector-tag,
+:is(html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]), html.light[data-theme-id="custom-scene"]) .github-theme .md-editor-code .hljs-literal,
+:is(html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]), html.light[data-theme-id="custom-scene"]) .github-theme .md-editor-code .hljs-section,
+:is(html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]), html.light[data-theme-id="custom-scene"]) .github-theme .md-editor-code .hljs-link {
+  color: #ff7b72 !important;
+}
+
+:is(html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]), html.light[data-theme-id="custom-scene"]) .github-theme .md-editor-code .hljs-function,
+:is(html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]), html.light[data-theme-id="custom-scene"]) .github-theme .md-editor-code .hljs-title,
+:is(html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]), html.light[data-theme-id="custom-scene"]) .github-theme .md-editor-code .hljs-title.function_ {
+  color: #d2a8ff !important;
+}
+
+:is(html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]), html.light[data-theme-id="custom-scene"]) .github-theme .md-editor-code .hljs-string,
+:is(html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]), html.light[data-theme-id="custom-scene"]) .github-theme .md-editor-code .hljs-attr,
+:is(html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]), html.light[data-theme-id="custom-scene"]) .github-theme .md-editor-code .hljs-symbol,
+:is(html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]), html.light[data-theme-id="custom-scene"]) .github-theme .md-editor-code .hljs-bullet,
+:is(html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]), html.light[data-theme-id="custom-scene"]) .github-theme .md-editor-code .hljs-addition {
+  color: #a5d6ff !important;
+}
+
+:is(html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]), html.light[data-theme-id="custom-scene"]) .github-theme .md-editor-code .hljs-number,
+:is(html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]), html.light[data-theme-id="custom-scene"]) .github-theme .md-editor-code .hljs-built_in,
+:is(html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]), html.light[data-theme-id="custom-scene"]) .github-theme .md-editor-code .hljs-type,
+:is(html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]), html.light[data-theme-id="custom-scene"]) .github-theme .md-editor-code .hljs-params,
+:is(html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]), html.light[data-theme-id="custom-scene"]) .github-theme .md-editor-code .hljs-meta {
+  color: #79c0ff !important;
+}
+
+:is(html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]), html.light[data-theme-id="custom-scene"]) .github-theme .md-editor-code .hljs-comment,
+:is(html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]), html.light[data-theme-id="custom-scene"]) .github-theme .md-editor-code .hljs-quote {
+  color: #c9d1d9 !important;
+}
+
+:is(html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]), html.light[data-theme-id="custom-scene"]) .github-theme .md-editor-code .hljs-variable,
+:is(html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]), html.light[data-theme-id="custom-scene"]) .github-theme .md-editor-code .hljs-template-variable,
+:is(html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]), html.light[data-theme-id="custom-scene"]) .github-theme .md-editor-code .hljs-name,
+:is(html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]), html.light[data-theme-id="custom-scene"]) .github-theme .md-editor-code .hljs-tag,
+:is(html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]), html.light[data-theme-id="custom-scene"]) .github-theme .md-editor-code .hljs-selector-id,
+:is(html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]), html.light[data-theme-id="custom-scene"]) .github-theme .md-editor-code .hljs-selector-class,
+:is(html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]), html.light[data-theme-id="custom-scene"]) .github-theme .md-editor-code .hljs-regexp,
+:is(html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]), html.light[data-theme-id="custom-scene"]) .github-theme .md-editor-code .hljs-deletion {
+  color: #ffa198 !important;
+}
+
+:is(html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]), html.light[data-theme-id="custom-scene"]) .github-theme .md-editor-code .hljs-attribute,
+:is(html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]), html.light[data-theme-id="custom-scene"]) .github-theme .md-editor-code .hljs-property {
+  color: #7ee787 !important;
+}
+
+/* 雾灰调：浅色代码块提高语法高亮对比度（与其它情景主题的暗底亮字方案不同） */
+html.light[data-theme-id="scene-graphite-cyan"] .github-theme .md-editor-code {
+  background: #ffffff !important;
+}
+html.light[data-theme-id="scene-graphite-cyan"] .github-theme .md-editor-code pre code,
+html.light[data-theme-id="scene-graphite-cyan"] .github-theme .md-editor-code .md-editor-code-block,
+html.light[data-theme-id="scene-graphite-cyan"] .github-theme .md-editor-code [class*="language-"] {
+  color: #1f2328 !important;
+  /* background: transparent !important; */
+}
+html.light[data-theme-id="scene-graphite-cyan"] .github-theme .md-editor-code .hljs-keyword,
+html.light[data-theme-id="scene-graphite-cyan"] .github-theme .md-editor-code .hljs-selector-tag,
+html.light[data-theme-id="scene-graphite-cyan"] .github-theme .md-editor-code .hljs-literal,
+html.light[data-theme-id="scene-graphite-cyan"] .github-theme .md-editor-code .hljs-section,
+html.light[data-theme-id="scene-graphite-cyan"] .github-theme .md-editor-code .hljs-link {
+  color: #0550ae !important;
+}
+html.light[data-theme-id="scene-graphite-cyan"] .github-theme .md-editor-code .hljs-function,
+html.light[data-theme-id="scene-graphite-cyan"] .github-theme .md-editor-code .hljs-title,
+html.light[data-theme-id="scene-graphite-cyan"] .github-theme .md-editor-code .hljs-title.function_ {
+  color: #8250df !important;
+}
+html.light[data-theme-id="scene-graphite-cyan"] .github-theme .md-editor-code .hljs-string,
+html.light[data-theme-id="scene-graphite-cyan"] .github-theme .md-editor-code .hljs-attr,
+html.light[data-theme-id="scene-graphite-cyan"] .github-theme .md-editor-code .hljs-symbol,
+html.light[data-theme-id="scene-graphite-cyan"] .github-theme .md-editor-code .hljs-bullet,
+html.light[data-theme-id="scene-graphite-cyan"] .github-theme .md-editor-code .hljs-addition {
+  color: #0a3069 !important;
+}
+html.light[data-theme-id="scene-graphite-cyan"] .github-theme .md-editor-code .hljs-number,
+html.light[data-theme-id="scene-graphite-cyan"] .github-theme .md-editor-code .hljs-built_in,
+html.light[data-theme-id="scene-graphite-cyan"] .github-theme .md-editor-code .hljs-type,
+html.light[data-theme-id="scene-graphite-cyan"] .github-theme .md-editor-code .hljs-params,
+html.light[data-theme-id="scene-graphite-cyan"] .github-theme .md-editor-code .hljs-meta {
+  color: #953800 !important;
+}
+html.light[data-theme-id="scene-graphite-cyan"] .github-theme .md-editor-code .hljs-comment,
+html.light[data-theme-id="scene-graphite-cyan"] .github-theme .md-editor-code .hljs-quote {
+  color: #636c76 !important;
+}
+html.light[data-theme-id="scene-graphite-cyan"] .github-theme .md-editor-code .hljs-variable,
+html.light[data-theme-id="scene-graphite-cyan"] .github-theme .md-editor-code .hljs-template-variable,
+html.light[data-theme-id="scene-graphite-cyan"] .github-theme .md-editor-code .hljs-name,
+html.light[data-theme-id="scene-graphite-cyan"] .github-theme .md-editor-code .hljs-tag,
+html.light[data-theme-id="scene-graphite-cyan"] .github-theme .md-editor-code .hljs-selector-id,
+html.light[data-theme-id="scene-graphite-cyan"] .github-theme .md-editor-code .hljs-selector-class,
+html.light[data-theme-id="scene-graphite-cyan"] .github-theme .md-editor-code .hljs-regexp,
+html.light[data-theme-id="scene-graphite-cyan"] .github-theme .md-editor-code .hljs-deletion {
+  color: #116329 !important;
+}
+html.light[data-theme-id="scene-graphite-cyan"] .github-theme .md-editor-code .hljs-attribute,
+html.light[data-theme-id="scene-graphite-cyan"] .github-theme .md-editor-code .hljs-property {
+  color: #0550ae !important;
+}
+
+/* 代码区域 */
+:is(html.light[data-theme-id="simple-light"]) .github-theme .md-editor-code {
+  background: rgba(0,0,0,0.03) !important;
+}
+
+/* 黑暗主题：AI回答文字白色 */
+html.dark .md-editor-preview {
+  color: #fff;
+}
+/* 黑暗主题：代码块保持语法高亮颜色，不强制白色 */
+/* html.dark .md-editor-preview pre,
+html.dark .md-editor-preview code,
+html.dark .md-editor-preview pre *,
+html.dark .md-editor-preview code * {
+  color: inherit !important;
+} */
+/* 黑暗主题：所有文字和组件的背景透明 */
+/* html.dark .md-editor-preview code,
+html.dark .md-editor-preview pre {
+  background: transparent !important;
+} */
+
+/* .md-editor-preview .md-editor-code pre code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, Courier New, monospace;
+    font-size: 14px;
+    color: var inherit (--md-theme-code-block-color);
+    background-color: var(--md-theme-code-before-bg-color);
+    display: block;
+    line-height: 1.6;
+    overflow: auto;
+    padding: 1em;
+    position: relative;
+    border-start-start-radius: 0;
+    border-start-end-radius: 0;
+    border-end-start-radius:red !important;
+    border-end-end-radius: white !important;
+}*/
+.md-editor-preview .md-editor-code pre code .md-editor-code-block {
+    display: inline-block;
+    width: 100%;
+    overflow: auto;
+    vertical-align: bottom;
+    color: var(--md-theme-code-block-color);
+  
+    
+}
+
+/* 代码行号与普通文字同色（覆盖 md-editor 默认 #999） */
+.md-editor-scrn span[rn-wrapper] > span:before {
+  color: var(--text-primary) !important;
+}
+
+
+/* ========== 水平滚动条样式 ========== */
+/* 滚动条整体宽度（水平滚动条控制高度） */
+.md-editor-preview .md-editor-code pre code .md-editor-code-block::-webkit-scrollbar {
+    height: 6px; /* 水平滚动条高度 */
+}
+
+/* 滚动条轨道背景 */
+.md-editor-preview .md-editor-code pre code .md-editor-code-block::-webkit-scrollbar-track {
+    background: var(--dropdown-hover-color); /* 轨道背景色，适配深色代码块 */
+    border-radius: 3px;
+}
+
+/* 滚动条滑块 */
+.md-editor-preview .md-editor-code pre code .md-editor-code-block::-webkit-scrollbar-thumb {
+    background: var(--webkit-scrollbar-thumb); /* 滑块颜色 */
+    border-radius: 3px;  
+}
+
+/* 鼠标悬浮滑块加深 */
+.md-editor-preview .md-editor-code pre code .md-editor-code-block::-webkit-scrollbar-thumb:hover {
+    background: var(--webkit-scrollbar-thumb);
+}
+
+
+
+
+/* 黑暗主题：代码显示区域白色10%（覆盖上面透明的pre/code） */
+html.dark .github-theme .md-editor-code {
+  background: rgba(255,255,255,0.10) !important;
+}
+/* 黑暗主题：表格全部透明 */
+html.dark .github-theme table,
+html.dark .github-theme table th,
+html.dark .github-theme table td,
+html.dark .github-theme table tr {
+  background: transparent !important;
+}
+html.dark .mxcs-fixed-side-panel {
+  background-color: #333;
+}
+html.light .mxcs-fixed-side-panel {
+  background-color: #fff;
+}
+
+/* 情景主题（除雾灰调）下所有下拉框文字白色 */
+/* html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .el-select-dropdown__item,
+html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .el-select-dropdown__item span,
+html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .el-popper.is-light {
+  color: #fff !important;
+} */
+
+.el-select-dropdown__item,
+.el-select-dropdown__item span
+{
+  color:var(--text-color-light-black);
+}
+ 
+.el-popper.is-light {
+    --el-fill-color-blank: var(--el-popper-bg-color-light);
+    background: var(--el-popper-bg-color-light);
+    /* border: 1px solid var(--el-border-color-light); */
+}
+
+/* ========== 智能对话 / 设置默认模型 共用：main-chat-select-popper ========== */
+.main-chat-select-popper .el-tag {
+  background: color-mix(in srgb, var(--color-primary) 5%, #ffffff) !important;
+  border: 1px solid color-mix(in srgb, var(--color-primary) 8%, transparent) !important;
+  color: color-mix(in srgb, var(--color-primary) 70%, #94a3b8) !important;
+  border-radius: 6px;
+  font-weight: normal;
+}
+.main-chat-select-popper .el-tag + .el-tag {
+  margin-left: 4px;
+}
+.main-chat-select-popper .el-tag .el-icon,
+.main-chat-select-popper .el-tag svg,
+.main-chat-select-popper .el-tag svg * {
+  color: color-mix(in srgb, var(--color-primary) 70%, #94a3b8) !important;
+  fill: currentColor !important;
+}
+html.dark .main-chat-select-popper .el-tag,
+html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .main-chat-select-popper .el-tag {
+  background: color-mix(in srgb, var(--color-primary) 12%, transparent) !important;
+  border: 1px solid color-mix(in srgb, var(--color-primary) 16%, transparent) !important;
+  color: color-mix(in srgb, var(--color-primary) 60%, #ffffff) !important;
+}
+html.dark .main-chat-select-popper .el-tag .el-icon,
+html.dark .main-chat-select-popper .el-tag svg,
+html.dark .main-chat-select-popper .el-tag svg *,
+html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .main-chat-select-popper .el-tag .el-icon,
+html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .main-chat-select-popper .el-tag svg,
+html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .main-chat-select-popper .el-tag svg * {
+  color: color-mix(in srgb, var(--color-primary) 60%, #ffffff) !important;
+  fill: currentColor !important;
+}
+.main-chat-select-popper .el-select-dropdown__wrap {
+  max-height: calc(68vh - 53px);
+}
+.main-chat-select-popper.el-popper {
+  z-index: 2002 !important;
+}
+.main-chat-select-popper .el-select-dropdown__header .el-input__wrapper {
+  width: 100% !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+.main-chat-select-popper .el-select-dropdown__header .el-button:not(.el-button--warning),
+.main-chat-select-popper .el-select-dropdown__header .el-button:not(.el-button--warning) span,
+.main-chat-select-popper .el-select-dropdown__header .el-button:not(.el-button--warning) .el-icon,
+.main-chat-select-popper .el-select-dropdown__header .el-button:not(.el-button--warning) svg {
+  color: var(--text-color-light-black, var(--text-primary)) !important;
+  --el-button-text-color: var(--text-color-light-black, var(--text-primary)) !important;
+  fill: currentColor !important;
+}
+.main-chat-select-popper .el-select-dropdown__header .el-input__inner::placeholder,
+.main-chat-select-popper .el-select-dropdown__header .el-input__inner::-webkit-input-placeholder {
+  color: color-mix(in srgb, var(--text-color-light-black, var(--text-primary)) 55%, transparent) !important;
+  -webkit-text-fill-color: color-mix(in srgb, var(--text-color-light-black, var(--text-primary)) 55%, transparent) !important;
+  opacity: 1 !important;
+}
+.main-chat-select-popper .el-select-group__title {
+  color: var(--text-color-light-black, var(--text-primary)) !important;
+}
+.main-chat-select-popper .model-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  max-width: 340px;
+  overflow: hidden;
+  position: relative;
+}
+.main-chat-select-popper .model-item .model-item-title {
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.main-chat-select-popper .model-item .model-tag-box {
+  flex: 1;
+  margin-left: 10px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.main-chat-select-popper .model-item .scroll-box {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  color: var(--color-primary) !important;
+}
+.main-chat-select-popper .vendor-incomplete .model-item-title,
+.main-chat-select-popper .model-item.vendor-incomplete .model-item-title {
+  opacity: 0.45;
+}
+.main-chat-select-popper .model-item.vendor-incomplete > .el-icon,
+.main-chat-select-popper .model-item.vendor-incomplete > .el-icon svg,
+.main-chat-select-popper .model-item.vendor-incomplete > .el-icon svg * {
+  opacity: 0.45;
+}
+html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .main-chat-select-popper .el-select-dropdown__item,
+html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .main-chat-select-popper .el-select-dropdown__item .model-item,
+html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .main-chat-select-popper .el-select-dropdown__item .model-item-title,
+html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .main-chat-select-popper .el-select-dropdown__item > .model-item > .el-icon,
+html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .main-chat-select-popper .el-select-dropdown__item > .model-item > .el-icon svg,
+html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .main-chat-select-popper .el-select-dropdown__item > .model-item > .el-icon svg * {
+  color: #fff !important;
+  fill: currentColor !important;
+}
+html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .main-chat-select-popper .el-select-dropdown__item:hover,
+html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .main-chat-select-popper .el-select-dropdown__item.is-hovering {
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+/* 切换模型弹窗与输入框模型下拉悬停一致 */
+html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .model-selector-popper .el-select-dropdown__item:hover,
+html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .model-selector-popper .el-select-dropdown__item.is-hovering,
+html.dark .model-selector-popper .el-select-dropdown__item:hover,
+html.dark .model-selector-popper .el-select-dropdown__item.is-hovering {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: var(--text-primary, #fff) !important;
+}
+html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .model-selector-popper .el-select-dropdown__item,
+html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .model-selector-popper .el-select-dropdown__item .model-item,
+html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .model-selector-popper .el-select-dropdown__item .model-item-title,
+html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .model-selector-popper .el-select-dropdown__item > .model-item > .el-icon,
+html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .model-selector-popper .el-select-dropdown__item > .model-item > .el-icon svg,
+html.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .model-selector-popper .el-select-dropdown__item > .model-item > .el-icon svg *,
+html.dark .model-selector-popper .el-select-dropdown__item,
+html.dark .model-selector-popper .el-select-dropdown__item .model-item-title,
+html.dark .model-selector-popper .el-select-dropdown__item > .model-item > .el-icon,
+html.dark .model-selector-popper .el-select-dropdown__item > .model-item > .el-icon svg,
+html.dark .model-selector-popper .el-select-dropdown__item > .model-item > .el-icon svg * {
+  color: var(--text-primary, #fff) !important;
+  fill: currentColor !important;
+}
+html.dark .main-chat-select-popper .el-select-dropdown__item,
+html.dark .main-chat-select-popper .el-select-dropdown__item .model-item-title,
+html.dark .main-chat-select-popper .el-select-dropdown__item > .model-item > .el-icon,
+html.dark .main-chat-select-popper .el-select-dropdown__item > .model-item > .el-icon svg,
+html.dark .main-chat-select-popper .el-select-dropdown__item > .model-item > .el-icon svg * {
+  color: var(--text-primary, #fff) !important;
+  fill: currentColor !important;
+}
+
+/* 情景/暗色主题下 Modal 弹窗跟随主题 */
+
+.dark .modal-header h3,
+.light[data-theme-id^="scene-"]:not([data-theme-id="scene-graphite-cyan"]) .modal-header h3 {
+  color: #fff !important;
+}
